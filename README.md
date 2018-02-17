@@ -1,10 +1,14 @@
 # Prpoject_2
 
+<h1>Popular Music Insights</h1>
+
 <h1>Team:</h1>
-Sophie Tsai
-John Swyers
-Stephen Schadt
-Anais Dotis-Georgiou
+<ul>
+<li>Sophie Tsai</li>
+<li>John Swyers</li>
+<li>Stephen Schadt</li>
+<li>Anais Dotis-Georgiou</li>
+</ul>
 
 <h1>Chosen Topic and Rationale:</h1>
 
