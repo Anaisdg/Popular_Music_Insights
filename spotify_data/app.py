@@ -20,24 +20,27 @@ limit_tracks = 20   #
 # Initialize Flask
 app = Flask(__name__)
 
-# Route that produces our JSON result
+# Route that outputs database results
+@app.route("/getCitiesFromMongo")
+def getCitiesFromMongo():
+    """ Retrieve & return all cities from the MongoDB collection 
+        Returns: jsonified results """
+    db = connectToMongo()
+    return getJSON(db.Cities.find())
+
+# Route that produces our JSON result and populates database
 @app.route("/scrapeSpotify")
 def scrapeSpotify():
     """ Call function to build cities array, and insert all retrieved city data as 
-        MongoDB documents (in 'songs_db' database) 
+        MongoDB documents (in 'songs_db' database)
+
+        Returns: jsonified results 
     """
     # Store dictionary of scraped values from scraping function
     if debugging == True:
         cities = DataCollection.test()                                         # DEBUGGING ONLY
     else:
         cities = DataCollection.scrape_spotify_info(limiting, limit_cities)    # THE REAL THING
-
-    #
-    # Connect to MongoDB so we can store our 'city' documents as they are being built
-    #
-    mongodb_uri = os.environ.get("DATABASE_URI", "") or "mongodb://localhost:27017" 
-    client = pymongo.MongoClient(mongodb_uri)
-    db = client.songs_db  # Declare the DB
 
     # Loop through all cities in dataset
     i = 0
@@ -57,7 +60,6 @@ def scrapeSpotify():
             # Loop through the top artists for this city, and determine the popularity values
             i = 0
             top_artists = []
-
             for top_artist in city["top_artists"]:
                 # Exit out of for loop at appropriate threshold, if we are limiting artist iterations
                 if limiting == True and i == limit_artists:
@@ -110,8 +112,8 @@ def scrapeSpotify():
             city["top_5_artists"] = top_5_artists
 
             # Loop through all tracks for this city, and create a new list of objects with the track popularity
-            # BEFORE: [trk1, trk2, trk3, ...]
-            # AFTER:  [
+            #   BEFORE: [trk1, trk2, trk3, ...]
+            #   AFTER:  [
             #           {'track': trk1, 'popularity': pop1, 'name': 'El Baile de Gorila', 'artist': 'Mossino'}
             #           {'track': trk2, 'popularity': pop2}
             #           ...
@@ -120,7 +122,6 @@ def scrapeSpotify():
             tracks = []
             highest_popularity = 0
             most_popular_track = ""
-
             for trk in city["track_ids"]:
                 # Exit out of for loop at appropriate threshold, if we are limiting track iterations
                 if limiting == True and i == limit_tracks:
@@ -172,6 +173,7 @@ def scrapeSpotify():
                 pprint.pprint(city)
             else:
                 # **** Insert the current city record into the MongoDB collection ****
+                db = connectToMongo()
                 db.Cities.update(   { "city": city["city"] },  
                                     city,
                                     upsert=True
@@ -179,14 +181,33 @@ def scrapeSpotify():
             
             # Iterate counter
             i += 1
-    
-    # JSON formatting of 'cities' array:
-    # - Dump MongoDB BSON (binary JSON) using 'json_util' package, to valid JSON string
-    # - Reload it as dictionary
-    # - Send jsonified results to browser
+
+    return getJSON(cities)
+
+def getJSON(cities):
+    """ JSON formatting of 'cities' array:
+        - Dump MongoDB BSON (binary JSON) using 'json_util' package, to valid JSON string
+        - Reload it as dictionary
+        - Send jsonified results to browser 
+        
+        Returns: jsonified results
+        
+        Arguments: cities -- array of cities (Object[])
+                 """
     cities_json = json.loads(json_util.dumps(cities))
     return jsonify(cities_json)
 
-# Main script execution
+def connectToMongo():
+    """ Connect to MongoDB so we can store our 'city' documents as they are being built
+
+        Returns: db -- database connection object
+    """
+    mongodb_uri = os.environ.get("DATABASE_URI", "") or "mongodb://localhost:27017" 
+    client = pymongo.MongoClient(mongodb_uri)
+    return client.songs_db  # Declare the DB
+
+#
+# *** Main script execution ***
+#
 if __name__ == "__main__":
     app.run(debug=flask_debugging)
