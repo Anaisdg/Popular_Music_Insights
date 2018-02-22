@@ -1,0 +1,603 @@
+[
+    {
+      "city": "San Antonio", 
+      "location": [
+        29.5, 
+        -98.5
+      ], 
+      "perc_asian": "2.4", 
+      "perc_black": "6.9", 
+      "perc_latino": "62", 
+      "spotify_url": "http://everynoise.com/everyplace.cgi?root=San%20Antonio%20Texas%20US&scope=United%20States", 
+      "top_5_artists": [
+        "George Strait", 
+        "Duelo", 
+        "Los Invasores De Nuevo Le\u00f3n", 
+        "Cody Johnson", 
+        "South Park Mexican"
+      ], 
+      "top_artists": [
+        {
+          "artist": "George Strait", 
+          "genres": [
+            "contemporary country", 
+            "country", 
+            "country christmas", 
+            "country road", 
+            "traditional country"
+          ], 
+          "popularity": 73, 
+          "tracks": [
+            "4sDiJmHNcm0wLTH8ns65va", 
+            "3ZJb4Qn1TvHx3HW08YLmTR", 
+            "0J3AaAp2XKLhfvNNYE6iie"
+          ]
+        }, 
+        {
+          "artist": "Duelo", 
+          "genres": [
+            "banda", 
+            "grupera", 
+            "norteno", 
+            "regional mexican", 
+            "tejano"
+          ], 
+          "popularity": 69, 
+          "tracks": [
+            "2cBzuJhVILqkpFAYxHwm64", 
+            "37BWywucpTcrzdhcZwkKyG", 
+            "2jFeVaKwofd1mVk50xSzjg"
+          ]
+        }, 
+        {
+          "artist": "Los Invasores De Nuevo Le\u00f3n", 
+          "genres": [
+            "banda", 
+            "grupera", 
+            "norteno", 
+            "regional mexican"
+          ], 
+          "popularity": 65, 
+          "tracks": [
+            "29m95um0i0NThLbWA765Lg", 
+            "2Tq1NVRQwWSZ0CUSxU0cFA", 
+            "7a5msYrIHJ1bx7pTLKVbZ9"
+          ]
+        }, 
+        {
+          "artist": "Cody Johnson", 
+          "genres": [
+            "contemporary country", 
+            "country road", 
+            "deep texas country", 
+            "modern country rock", 
+            "outlaw country", 
+            "texas country"
+          ], 
+          "popularity": 65, 
+          "tracks": [
+            "2g3vpJiqwswGJbUOSkCWqC", 
+            "4EETgKkkLxXrsrc0q50K1P", 
+            "5EDt7cxNUAVK0QlGjPo1dZ"
+          ]
+        }, 
+        {
+          "artist": "South Park Mexican", 
+          "genres": [
+            "chicano rap", 
+            "dirty south rap", 
+            "gangster rap", 
+            "latin hip hop"
+          ], 
+          "popularity": 63, 
+          "tracks": [
+            "45tI2PP1M7hhqhdNRz0YAn", 
+            "0Z6iHJRVx00MOwXGl5ku4i", 
+            "0zRpsXMbE1oBv58A22BhKN"
+          ]
+        }, 
+        {
+          "artist": "Randy Rogers Band", 
+          "genres": [
+            "deep texas country", 
+            "outlaw country", 
+            "texas country"
+          ], 
+          "popularity": 59, 
+          "tracks": [
+            "4hFSl2YfBUCY7RgZ8OhwCO", 
+            "1EHNNWLiWe1PJADKEnMvIr", 
+            "3bZKIfJVpW8HktEafRnRP2"
+          ]
+        }, 
+        {
+          "artist": "Blake", 
+          "genres": [
+            "dwn trap"
+          ], 
+          "popularity": 54, 
+          "tracks": [
+            "1nNSyLtQazJ4oGbBiPa2xx", 
+            "4nlCHsRRCrnIzuRbKGT75W", 
+            "5eV4w3EUAxxdbD6ezQ29bN"
+          ]
+        }, 
+        {
+          "artist": "Solido", 
+          "genres": [
+            "norteno", 
+            "regional mexican", 
+            "tejano"
+          ], 
+          "popularity": 51, 
+          "tracks": [
+            "2rtWElTrFeycfkybYyou0e", 
+            "26sglkAhF4WfzcigwRJwL9", 
+            "727yvKyuB1XJaNoV2XNOCR"
+          ]
+        }, 
+        {
+          "artist": "Costumbre", 
+          "genres": [
+            "norteno", 
+            "regional mexican", 
+            "tejano"
+          ], 
+          "popularity": 50, 
+          "tracks": [
+            "3fW0JzqjeUNpMCdxy1AcUP", 
+            "41rJ9FmSJ2pV5SIitwDvdu", 
+            "6FxXIsFtYEZdh9qLFNvQc4"
+          ]
+        }, 
+        {
+          "artist": "Mazz", 
+          "genres": [
+            "tejano"
+          ], 
+          "popularity": 46, 
+          "tracks": [
+            "5TMB9Xnfe1lbvDHZtjCUcZ", 
+            "4ITL0FFTc4LRFyvUVeY4CC", 
+            "5DGCz0pG9SrJpIps43xyod"
+          ]
+        }
+      ], 
+      "top_track": {
+        "artist": "Randy Rogers Band", 
+        "name:": "In My Arms Instead", 
+        "popularity": 58, 
+        "track": "4hFSl2YfBUCY7RgZ8OhwCO"
+      }, 
+      "track_ids": [
+        {
+          "artist": "Massore", 
+          "name:": "El baile del Gorila", 
+          "popularity": 41, 
+          "track": "2wtaarbpkeVMppRu0zeN7s"
+        }, 
+        {
+          "artist": "Randy Rogers Band", 
+          "name:": "In My Arms Instead", 
+          "popularity": 58, 
+          "track": "4hFSl2YfBUCY7RgZ8OhwCO"
+        }, 
+        {
+          "artist": "Gary Hobbs", 
+          "name:": "Las Miradas", 
+          "popularity": 38, 
+          "track": "61RtRacZsYYxUFSLaSBeou"
+        }, 
+        {
+          "artist": "Ram Herrera", 
+          "name:": "Amor Querido", 
+          "popularity": 28, 
+          "track": "7Dod4VT1f76b5sekRUXGPN"
+        }, 
+        {
+          "artist": "Siggno", 
+          "name:": "Ya No Me Importa", 
+          "popularity": 40, 
+          "track": "5f9iiJV4M4FmPbIGtxwoeM"
+        }, 
+        {
+          "artist": "Randy Rogers Band", 
+          "name:": "Buy Myself A Chance", 
+          "popularity": 56, 
+          "track": "1EHNNWLiWe1PJADKEnMvIr"
+        }, 
+        {
+          "artist": "Randy Rogers Band", 
+          "name:": "Kiss Me In The Dark", 
+          "popularity": 58, 
+          "track": "3bZKIfJVpW8HktEafRnRP2"
+        }, 
+        {
+          "artist": "Mazz", 
+          "name:": "Ayer Y Hoy", 
+          "popularity": 45, 
+          "track": "5TMB9Xnfe1lbvDHZtjCUcZ"
+        }, 
+        {
+          "artist": "Michael Salgado", 
+          "name:": "Palomita Blanca", 
+          "popularity": 36, 
+          "track": "3lDMZAwtuSEUB0Sxkn7qrQ"
+        }, 
+        {
+          "artist": "Kevin Fowler", 
+          "name:": "Hard Man to Love", 
+          "popularity": 46, 
+          "track": "1hTVjihLZcyCWIkT3MEC2L"
+        }, 
+        {
+          "artist": "Emilio Navaira", 
+          "name:": "Como Le Hare", 
+          "popularity": 40, 
+          "track": "12M7VICbjYKBeIMObErGNS"
+        }, 
+        {
+          "artist": "Siggno", 
+          "name:": "Yo Te Esperar\u00e9", 
+          "popularity": 47, 
+          "track": "31jvfOIBsOLYaT5YHQS4J8"
+        }, 
+        {
+          "artist": "Siggno", 
+          "name:": "Mama", 
+          "popularity": 39, 
+          "track": "0eVpwKZw9vYNF9gAU7AUqq"
+        }, 
+        {
+          "artist": "Mazz", 
+          "name:": "Amigo Mio", 
+          "popularity": 41, 
+          "track": "4ITL0FFTc4LRFyvUVeY4CC"
+        }, 
+        {
+          "artist": "David Lee Garza", 
+          "name:": "Tonta", 
+          "popularity": 36, 
+          "track": "6RlsRsjrJNZRqwgIDgeXY1"
+        }, 
+        {
+          "artist": "South Park Mexican", 
+          "name:": "Mexican Radio", 
+          "popularity": 56, 
+          "track": "45tI2PP1M7hhqhdNRz0YAn"
+        }, 
+        {
+          "artist": "Josh Abbott Band", 
+          "name:": "Taste", 
+          "popularity": 49, 
+          "track": "7dPLFIBvafAXkJF7eDRcIs"
+        }, 
+        {
+          "artist": "Solido", 
+          "name:": "Hasta La Cima Del Cielo", 
+          "popularity": 43, 
+          "track": "2rtWElTrFeycfkybYyou0e"
+        }, 
+        {
+          "artist": "Los Palominos", 
+          "name:": "Te Seguire", 
+          "popularity": 45, 
+          "track": "3RXoiN0V2UpFLvR0bfAZn5"
+        }, 
+        {
+          "artist": "Z-Ro", 
+          "name:": "Mo City Don", 
+          "popularity": 52, 
+          "track": "338VhnERUjSnXmIFGuxonu"
+        }
+      ]
+    }, 
+    {
+      "city": "Los Angeles", 
+      "location": [
+        34.0522, 
+        -118.2437
+      ], 
+      "perc_asian": "10.7", 
+      "perc_black": "9.8", 
+      "perc_latino": "47.5", 
+      "spotify_url": "http://everynoise.com/everyplace.cgi?root=Los%20Angeles%20California%20US&scope=United%20States", 
+      "top_5_artists": [
+        "T3R Elemento", 
+        "LEGADO 7", 
+        "Grupo Codiciado", 
+        "Too $hort", 
+        "Arsenal Efectivo"
+      ], 
+      "top_artists": [
+        {
+          "artist": "T3R Elemento", 
+          "genres": [
+            "regional mexican", 
+            "regional mexican pop"
+          ], 
+          "popularity": 70, 
+          "tracks": [
+            "2Zaix8QmgAYadp7tGotx2b", 
+            "4gYWUTGMg35rMcHgjvtZDV", 
+            "3UizT8ymYQqyFar48nWDPO"
+          ]
+        }, 
+        {
+          "artist": "LEGADO 7", 
+          "genres": [
+            "regional mexican pop"
+          ], 
+          "popularity": 67, 
+          "tracks": [
+            "7nOm9zZmeWX8NohHdpEnjE", 
+            "3CUWDFx4AS9Jz4ThiqDAuX", 
+            "5x5lzsrqGJXh2ymJS5AdCH"
+          ]
+        }, 
+        {
+          "artist": "Grupo Codiciado", 
+          "genres": [
+            "regional mexican pop"
+          ], 
+          "popularity": 66, 
+          "tracks": [
+            "2lZehSAU76xTWRoO1TwJpA", 
+            "4AxqbhCvsYeWaS6ll4Imph", 
+            "1k3DdtzpubgYuf7fTs1arQ"
+          ]
+        }, 
+        {
+          "artist": "Too $hort", 
+          "genres": [
+            "crunk", 
+            "dirty south rap", 
+            "gangster rap", 
+            "hip hop", 
+            "hyphy", 
+            "latin hip hop", 
+            "pop rap", 
+            "rap", 
+            "southern hip hop", 
+            "trap music", 
+            "west coast rap", 
+            "west coast trap"
+          ], 
+          "popularity": 65, 
+          "tracks": [
+            "03aHYlzPaJnypjFPkEJVJy", 
+            "2lMg3lCMOGistaWBNGjuT3", 
+            "70RG1PwwFzlOPpMr36ErGc"
+          ]
+        }, 
+        {
+          "artist": "Arsenal Efectivo", 
+          "genres": [
+            "regional mexican pop"
+          ], 
+          "popularity": 61, 
+          "tracks": [
+            "2JwztiYR35Y8Wvf8rwnQva", 
+            "4UdC2swdiEBCsP5mLyESWG", 
+            "3EFZ9F9oP3zhXMUUgfskVU"
+          ]
+        }, 
+        {
+          "artist": "Shoreline Mafia", 
+          "genres": [
+            "west coast trap"
+          ], 
+          "popularity": 61, 
+          "tracks": [
+            "7cAXuJJbo8A7HGnmdNkBmU", 
+            "0m4QnoZ0CoWSLqAt4rFwsT", 
+            "1G8vmOtnhI6O7dgIwOILtC"
+          ]
+        }, 
+        {
+          "artist": "Los Nuevos Rebeldes", 
+          "genres": [
+            "banda", 
+            "deep regional mexican", 
+            "norteno", 
+            "regional mexican", 
+            "regional mexican pop"
+          ], 
+          "popularity": 60, 
+          "tracks": [
+            "72XOpOtn7qO0oVFgLuNHcV", 
+            "6HjcmlLRVpG7TspbOAzZAp", 
+            "0zfHzoKwX32l9aJ2G1frpZ"
+          ]
+        }, 
+        {
+          "artist": "DJ Quik", 
+          "genres": [
+            "chicano rap", 
+            "dirty south rap", 
+            "g funk", 
+            "gangster rap", 
+            "hardcore hip hop", 
+            "hip hop", 
+            "hyphy", 
+            "pop rap", 
+            "rap", 
+            "southern hip hop", 
+            "west coast rap", 
+            "west coast trap"
+          ], 
+          "popularity": 57, 
+          "tracks": [
+            "1N7qu71GFoEzp7KK10Y7m3", 
+            "2hluGQtmPypU3tsQudCQ3U", 
+            "0VdZ7t50K2asjY5hsABTDI"
+          ]
+        }, 
+        {
+          "artist": "Mack 10", 
+          "genres": [
+            "chicano rap", 
+            "crunk", 
+            "dirty south rap", 
+            "g funk", 
+            "gangster rap", 
+            "hardcore hip hop", 
+            "hip hop", 
+            "hyphy", 
+            "pop rap", 
+            "rap", 
+            "southern hip hop", 
+            "west coast rap", 
+            "west coast trap"
+          ], 
+          "popularity": 56, 
+          "tracks": [
+            "0Bbd5inN2znpGQkxZbqmmU", 
+            "28SF0lKRqso9SSTDpbv991", 
+            "2rwmKpWW6o6anOhvcyiJOw"
+          ]
+        }, 
+        {
+          "artist": "Brenton Wood", 
+          "genres": [
+            "chicago soul", 
+            "motown"
+          ], 
+          "popularity": 55, 
+          "tracks": [
+            "0nNavzWSD6AUiQK2rLgbBx", 
+            "6HTFY66ZttBULqR1108Zmy", 
+            "7hphy8rtxpYshs3UzDZTzN"
+          ]
+        }
+      ], 
+      "top_track": {
+        "artist": "Arsenal Efectivo", 
+        "name:": "Vida Peligrosa", 
+        "popularity": 64, 
+        "track": "4UdC2swdiEBCsP5mLyESWG"
+      }, 
+      "track_ids": [
+        {
+          "artist": "Shoreline Mafia", 
+          "name:": "Bottle Service (Bonus)", 
+          "popularity": 60, 
+          "track": "7cAXuJJbo8A7HGnmdNkBmU"
+        }, 
+        {
+          "artist": "Shoreline Mafia", 
+          "name:": "Nun Major", 
+          "popularity": 61, 
+          "track": "0m4QnoZ0CoWSLqAt4rFwsT"
+        }, 
+        {
+          "artist": "RJMrLA", 
+          "name:": "Hoes Come Easy", 
+          "popularity": 52, 
+          "track": "1tVwKHwJ5OfNGIyAuM8HLL"
+        }, 
+        {
+          "artist": "Suga Free", 
+          "name:": "Why U Bullshittin'?", 
+          "popularity": 49, 
+          "track": "3zb1zBmkrPF6VW8RhlSYA1"
+        }, 
+        {
+          "artist": "RJMrLA", 
+          "name:": "Get Rich (feat. Iamsu!)", 
+          "popularity": 53, 
+          "track": "6IiFB8ndkFPllAj2F8qnuJ"
+        }, 
+        {
+          "artist": "Shoreline Mafia", 
+          "name:": "Whuss The Deal", 
+          "popularity": 56, 
+          "track": "1G8vmOtnhI6O7dgIwOILtC"
+        }, 
+        {
+          "artist": "Brenton Wood", 
+          "name:": "I Like The Way You Love Me", 
+          "popularity": 51, 
+          "track": "0nNavzWSD6AUiQK2rLgbBx"
+        }, 
+        {
+          "artist": "Brenton Wood", 
+          "name:": "Me And You", 
+          "popularity": 51, 
+          "track": "6HTFY66ZttBULqR1108Zmy"
+        }, 
+        {
+          "artist": "YG", 
+          "name:": "Ride With Me", 
+          "popularity": 52, 
+          "track": "2amEGukf72WmlPCXujlRgl"
+        }, 
+        {
+          "artist": "Brenton Wood", 
+          "name:": "Baby You Got It", 
+          "popularity": 48, 
+          "track": "7hphy8rtxpYshs3UzDZTzN"
+        }, 
+        {
+          "artist": "Suga Free", 
+          "name:": "I'd Rather Give You My Bitch", 
+          "popularity": 48, 
+          "track": "60N6CmRQz4f5AYECxxgK3l"
+        }, 
+        {
+          "artist": "DJ Quik", 
+          "name:": "Pitch In OnA Party", 
+          "popularity": 43, 
+          "track": "1N7qu71GFoEzp7KK10Y7m3"
+        }, 
+        {
+          "artist": "YG", 
+          "name:": "Get Out Yo Feelin's", 
+          "popularity": 53, 
+          "track": "5wYG7LnAI1pQU6kwFaJswW"
+        }, 
+        {
+          "artist": "Arsenal Efectivo", 
+          "name:": "Lolo Felix", 
+          "popularity": 62, 
+          "track": "2JwztiYR35Y8Wvf8rwnQva"
+        }, 
+        {
+          "artist": "Vinny West", 
+          "name:": "Too Player", 
+          "popularity": 51, 
+          "track": "0wG4PyMJUxcjvlQnhqfn3x"
+        }, 
+        {
+          "artist": "Billy Stewart", 
+          "name:": "Sitting In The Park - Single Version", 
+          "popularity": 48, 
+          "track": "3m9UWD6ChNt4V0ZYOBwzMe"
+        }, 
+        {
+          "artist": "YG", 
+          "name:": "BPT", 
+          "popularity": 57, 
+          "track": "1tdc73ozehKPyRWRKs0lja"
+        }, 
+        {
+          "artist": "Kamaiyah", 
+          "name:": "Fuck It up (feat. Yg)", 
+          "popularity": 58, 
+          "track": "4rr19p6NPfg8oUazZQnkS8"
+        }, 
+        {
+          "artist": "Arsenal Efectivo", 
+          "name:": "Vida Peligrosa", 
+          "popularity": 64, 
+          "track": "4UdC2swdiEBCsP5mLyESWG"
+        }, 
+        {
+          "artist": "Kurupt", 
+          "name:": "We Can Freak It", 
+          "popularity": 52, 
+          "track": "2OCTC6cPRdI3Dvdb25jRDC"
+        }
+      ]
+    }
+]
