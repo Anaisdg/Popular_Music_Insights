@@ -5,19 +5,27 @@ import pandas as pd
 import time
 from selenium import webdriver
 
-# Initialize test browser session for scraping
 def init_browser():
+    """ Initialize test browser session for scraping """
     executable_path = {'executable_path': 'chromedriver.exe'}
     return Browser('chrome', **executable_path, headless=False)
 
 def test():
-    from TESTING_TestCity import cities
+    """ Returns static cities array, for testing purposes """
+    # Import test dataset from test_city.py
+    from data.test_city import cities
     return cities
 
-# Scraping function to obtain Spotify ID information for each track in city-specific playlists 
-# (for selected cities from Cities.py)
-def scrape_spotify_info(limiting):
-    from Cities import cities
+def scrape_spotify_info(limiting, limit):
+    """ Obtain Spotify ID information for each track in city-specific playlists 
+        (for selected cities from Cities.py)
+
+        Args:
+            limiting -- If we are limiting the for loop (boolean)
+            limit -- The limit threshold
+    """
+    # Import actual dataset from Cities.py
+    from data.Cities import cities
 
     # Initialize browser that we can re-use
     browser = init_browser()
@@ -25,15 +33,15 @@ def scrape_spotify_info(limiting):
     # Lopo through all cities in the array
     i = 0
     for city in cities:
-        # Exit out of for loop at 2 if we are limiting city loop iterations
-        if limiting == True and i == 2:
+        # Exit out of for loop at specified limit, if we are limiting city iterations
+        if limiting == True and i == limit:
             break
         # Increment counter
         i += 1
 
         # Take the first URL in our list (as a test)
-        test_url = city["spotify_url"]
-        browser.visit(test_url)
+        city_url = city["spotify_url"]
+        browser.visit(city_url)
 
         # Wait for page to load
         time.sleep(2)
@@ -45,12 +53,12 @@ def scrape_spotify_info(limiting):
         html = browser.html  
         soup = bs(html, 'html.parser')
 
-        # Get iFRAME URL for playlist, and visit it
+        # Get iFRAME URL for the actual playlist, and visit it
         iframe = soup.find("iframe")["src"]
         browser.visit(iframe)
 
         # Wait for page to load
-        time.sleep(5)
+        time.sleep(6)
 
         # Pass the HTML output from the splinter session
         html = browser.html  
@@ -63,15 +71,15 @@ def scrape_spotify_info(limiting):
         songs = []
 
         # Loop through all songs in playlist to grab song names and artist info
-        for result in playlist:    
+        for result in playlist:
+            # Retrieve song information (LI)
             song_info = result.contents[1]
             
-            # Strip out the data-uri from the track info
+            # Strip out the 'data-uri attribute from the track info
             data_uri = result.attrs["data-uri"]
             
-            # Get the track_id from the above
+            # Get the track_id from the above (strip out actual ID value)
             track_id = str.split(data_uri, ":")[2] 
-            #track_id = data_uri
             
             # Get the Artist and song name
             artist_name = song_info.contents[1].contents[0]

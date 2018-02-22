@@ -1,4 +1,5 @@
-import Data_collection
+import os
+import DataCollection
 import spotipy
 import pprint
 import spotipy.util as util
@@ -8,35 +9,41 @@ from bson import json_util, ObjectId
 import json
 from spotify_config import client_id, client_secret, redirect_uri, scope, username
 
-# Debugging variable
+# Debugging variables
+flask_debugging = True
 debugging = False   # Set to true to only print results, don't insert into DB
 limiting = True    # Set to true to limit the number of iterations against Spotify API
-limit_at = 4
+limit_cities = 2
+limit_artists = 10
+limit_tracks = 20
 
 # Initialize Flask
 app = Flask(__name__)
 
-# Call scraped values function, and insert them into MongoDB document in 'mars_db' database
+# Route that produces our JSON result
 @app.route("/scrapeSpotify")
 def scrapeSpotify():
+    """ Call function to build cities array, and insert all retrieved city data as 
+        MongoDB documents (in 'songs_db' database) 
+    """
     # Store dictionary of scraped values from scraping function
     if debugging == True:
-        cities = Data_collection.test()                   # DEBUGGING ONLY
+        cities = DataCollection.test()                                         # DEBUGGING ONLY
     else:
-        cities = Data_collection.scrape_spotify_info(limiting)    # THE REAL THING
+        cities = DataCollection.scrape_spotify_info(limiting, limit_cities)    # THE REAL THING
 
     #
     # Connect to MongoDB so we can store our 'city' documents as they are being built
     #
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
+    mongodb_uri = os.environ.get("DATABASE_URI", "") or "mongodb://localhost:27017" 
+    client = pymongo.MongoClient(mongodb_uri)
     db = client.songs_db  # Declare the DB
 
     # Loop through all cities in dataset
     i = 0
     for city in cities:
         # Exit out of for loop at 2 if we are limiting city loop iterations
-        if limiting == True and i == limit_at:
+        if limiting == True and i == limit_cities:
             break
         
         # Set Spotify authentication token 
@@ -53,7 +60,7 @@ def scrapeSpotify():
 
             for top_artist in city["top_artists"]:
                 # Exit out of for loop at 2 if we are limiting city loop iterations
-                if limiting == True and i == limit_at:
+                if limiting == True and i == limit_artists:
                     break
 
                 i += 1
@@ -66,18 +73,14 @@ def scrapeSpotify():
                 #       'popularity': 99       <------------- *** BEING ADDED ***
                 #   }
                 # Get info about the first artist track
-                #if i < 20:
                 urn = top_artist["tracks"][0]
-                print("track id working: " + urn)
                 track = sp.track(urn)
-                # pprint.pprint(track)
 
                 # Get the artist's Spotify URI
                 artist_uri = track['artists'][0]['uri']
 
                 # Get the artist info
                 artist_info = sp.artist(artist_uri)
-                #pprint.pprint(artist_info)
 
                 # Get the artist popularity and add it to the current 'top_artist' object
                 artist_popularity = artist_info["popularity"]
@@ -85,11 +88,22 @@ def scrapeSpotify():
 
                 # Build top_artist object and append updated object to master collection
                 top_artists.append(top_artist)
-                #print(top_artist)
 
-            # Update the updated object in the master list
+            # Update the 'top_artists' field in the current city object
+            top_artists.sort(key=lambda x: x["popularity"], reverse=True)
             city["top_artists"] = top_artists
-            #pprint.pprint(test_city)
+
+            # Build 'top_5_artists' list: sort the 'top_artists' by popularity in descending order
+            top_5_artists = []
+            i_art = 0
+            for art in top_artists:
+                if i_art == 5:
+                    break
+                top_5_artists.append(art["artist"])
+                i_art += 1
+                
+            # Update the 'top_5_artists' field in the current city object
+            city["top_5_artists"] = top_5_artists
 
             # Loop through all tracks for this city, and create a new list of objects with the track popularity
             # BEFORE: [trk1, trk2, trk3, ...]
@@ -105,7 +119,7 @@ def scrapeSpotify():
 
             for trk in city["track_ids"]:
                 # Exit out of for loop at 2 if we are limiting city loop iterations
-                if limiting == True and i == limit_at:
+                if limiting == True and i == limit_tracks:
                     break
 
                 i += 1
@@ -154,8 +168,10 @@ def scrapeSpotify():
                 pprint.pprint(city)
             else:
                 # **** Insert the current city record into the MongoDB collection ****
-                #db.Cities.update(city, { "upsert": True })
-                db.Cities.insert(city)
+                db.Cities.update(   { "city": city["city"] },  
+                                    city,
+                                    upsert=True
+                                )
             
             # Iterate counter
             i += 1
@@ -164,24 +180,6 @@ def scrapeSpotify():
     cities_json = json.loads(json_util.dumps(cities))
     return jsonify(cities_json)
 
+# Main script execution
 if __name__ == "__main__":
-    app.run(debug=True)
-
-# *** TO DO: Updating the Gender of each artist (replace '0' with whatever index we are updating ***
-# db.Cities.update ({'city': 'San Antonio'}, { '$set': {"top_artists.0.gender" : 'Male'} })
-# *** End Gender update code ***
-
-# *** TO DO: Querying for cities that have *any* male/female artists in the 'top-artists' array ***
-#  db.Cities.find( { 'top_artists.gender': { $eq: 'Male' }})
-# *** End Gender query selector
-
-# To update a specific city's "top_5_artists" or "top_track" values:
-#new_list = ["joe", "frank"]
-#db.Cities.update(
-#    { "city": "San Antonio" }, 
-#    { "$set": 
-#        {  
-#            "top_5_artists": new_list
-#        }
-#    } 
-#)
+    app.run(debug=flask_debugging)
