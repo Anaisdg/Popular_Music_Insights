@@ -4,7 +4,7 @@ import spotipy
 import pprint
 import spotipy.util as util
 import pymongo
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from bson import json_util, ObjectId
 import json
 from spotify_config import client_id, client_secret, redirect_uri, scope, username
@@ -13,7 +13,7 @@ from spotify_config import client_id, client_secret, redirect_uri, scope, userna
 flask_debugging = True # Set to True when in Flask debug mode (DISABLE BEFORE DEPLOYING LIVE)
 debugging = False   # Set to True to only print results (don't insert into MongoDB)
 limiting = True     # Set to True to limit the number of iterations against Spotify API
-limit_cities = 2    # 
+limit_cities = 5    # 
 limit_artists = 10  # *** ITERATION LIMITING THRESHOLDS: Only in effect when "LIMITING=True" ***
 limit_tracks = 20   #
 
@@ -26,7 +26,13 @@ def getCitiesFromMongo():
     """ Retrieve & return all cities from the MongoDB collection 
         Returns: jsonified results """
     db = connectToMongo()
-    return getJSON(db.Cities.find())
+
+    # If a limit was specified in the querystring, use it to limit our results
+    if request.args.get('limit'):
+        limit = int(request.args.get('limit'))        
+        return getJSON(wrapGeoJSON(db.Cities.find().limit(limit)))
+    else:
+        return getJSON(wrapGeoJSON(db.Cities.find()))
 
 # Route that produces our JSON result and populates database
 @app.route("/scrapeSpotify")
@@ -139,7 +145,7 @@ def scrapeSpotify():
                                 "track": trk, 
                                 "popularity": current_track_popularity,
                                 "artist": current_track_artist,
-                                "name:": current_track_name
+                                "name": current_track_name
                             }
             
                 # Append updated object to track_ids array
@@ -164,7 +170,7 @@ def scrapeSpotify():
                             "track": most_popular_track, 
                             "popularity": highest_popularity,
                             "artist": most_popular_artist,
-                            "name:": most_popular_track_name
+                            "name": most_popular_track_name
                         }
             city["top_track"] = mostpopular_track_info
 
@@ -182,7 +188,19 @@ def scrapeSpotify():
             # Iterate counter
             i += 1
 
-    return getJSON(cities)
+    return getJSON(wrapGeoJSON(cities))
+
+def wrapGeoJSON(cities):
+    """ Wrap returned cities array into GeoJSON-friendly format
+
+        Returns: Object
+    """
+    cities_geojson = {
+        "type": "FeatureCollection",
+        "features": cities
+    }
+
+    return cities_geojson
 
 def getJSON(cities):
     """ JSON formatting of 'cities' array:
