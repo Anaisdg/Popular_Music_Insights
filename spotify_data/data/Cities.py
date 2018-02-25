@@ -1,8 +1,26 @@
-# Define the list of URLs to surf (for each city)
+# GEOJson Format:
+# {
+#    type: "FeatureCollection",
+#    features: [
+#        {
+#           type: "Feature",
+#           geometry: {
+#                type: "Point",
+#                coordinates: [lat, lng]
+#           }
+#         }
+#    ]
+#}
+
+# Define the list of URLs for each city in our dataset
 cities = [
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-98.5, 29.5, 0],
+    },  
     "city": "San Antonio",
-    "location": [29.5, -98.5],    
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=San%20Antonio%20Texas%20US&scope=United%20States",
     "perc_latino": "62",
     "perc_black": "6.9",
@@ -13,8 +31,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-118.2437, 34.0522, 0],
+    },  
     "city": "Los Angeles",
-    "location": [34.0522, -118.2437],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Los%20Angeles%20California%20US&scope=United%20States",
     "perc_latino": "47.5",
     "perc_black": "9.8",
@@ -25,8 +47,12 @@ cities = [
     "track_ids": []        
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-122.25, 37.47, 0],
+    },  
     "city": "San Francisco",
-    "location": [37.47, -122.25],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=San%20Francisco%20California%20US&scope=United%20States",
     "perc_latino": "15.1",
     "perc_black": "6.1",
@@ -37,8 +63,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-87.6298, 41.8781, 0],
+    },  
     "city": "Chicago",
-    "location": [41.8781, -87.6298],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Chicago%20Illinois%20US&scope=United%20States",
     "perc_latino": "28",
     "perc_black": "32",
@@ -49,32 +79,44 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-104.52, 39.45, 0],
+    },          
     "city": "Denver",
-    "location": [39.45, -104.52],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Denver%20Colorado%20US&scope=United%20States",
     "perc_latino": "31.2",
     "perc_black": "11.1",
-    "asian": "4.5",
+    "perc_asian": "4.5",
     "top_artists": [],
     "top_5_artists": [],
     "top_track": {},
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-73.57, 40.37, 0],
+    },   
     "city": "Brooklyn",
-    "location": [40.37, -73.57],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Brooklyn%20New%20York%20US&scope=United%20States",
     "perc_latino": "19.8",
     "perc_black": "31.9",
-    "asian": "10.4",
+    "perc_asian": "10.4",
     "top_artists": [],
     "top_5_artists": [],
     "top_track": {},
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-93.16, 44.59, 0],
+    },  
     "city": "Minneapolis",
-    "location": [44.59, -93.16],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Minneapolis%20Minnesota%20US&scope=United%20States",
     "perc_latino": "10.5",
     "perc_black": "18.6",
@@ -85,8 +127,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-80.12, 25.46, 0],
+    }, 
     "city": "Miami",
-    "location": [25.46, -80.12],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Miami%20Florida%20US&scope=United%20States",
     "perc_latino": "70",
     "perc_black": "19.2",
@@ -97,8 +143,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-80.5, 35.13, 0],
+    }, 
     "city": "Charlotte",
-    "location": [35.13, -80.5],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Charlotte%20North%20Carolina%20US&scope=United%20States",
     "perc_latino": "13.1",
     "perc_black": "35",
@@ -109,8 +159,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-77, 38.54, 0],
+    }, 
     "city": "Washington, DC",
-    "location": [38.54, -77],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Washington%20District%20of%20Columbia%20US&scope=United%20States",
     "perc_latino": "10.9",
     "perc_black": "47.7",
@@ -121,8 +175,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-84.23, 33.45, 0],
+    }, 
     "city": "Atlanta",
-    "location": [33.45, -84.23],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Atlanta%20Georgia%20US&scope=United%20States",
     "perc_latino": "4.7",
     "perc_black": "51.4",
@@ -133,8 +191,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-95.3698, 29.7604, 0],
+    }, 
     "city": "Houston",
-    "location": [29.7604, -95.3698],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Houston%20Texas%20US&scope=United%20States",
     "perc_latino": "37",
     "perc_black": "25.3",
@@ -145,8 +207,12 @@ cities = [
     "track_ids": []
     },
     {
-    "city": "Boise",
-    "location": [43.37, -116.12],
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-116.12, 43.37, 0],
+    }, 
+    "city": "Boise", 
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Boise%20Idaho%20US&scope=United%20States",
     "perc_latino": "7.1",
     "perc_black": "1.5",
@@ -157,8 +223,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-112.04, 33.27, 0],
+    }, 
     "city": "Phoenix",
-    "location": [33.27, -112.04],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Phoenix%20Arizona%20US&scope=United%20States",
     "perc_latino": "40.8",
     "perc_black": "6.5",
@@ -169,8 +239,12 @@ cities = [
     "track_ids": []
     },
     {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-71.03, 42.21, 0],
+    }, 
     "city": "Boston",
-    "location": [42.21, -71.03],
     "spotify_url": "http://everynoise.com/everyplace.cgi?root=Boston%20Massachusetts%20US&scope=United%20States",
     "perc_latino": "22.1",
     "perc_black": "24.7",
