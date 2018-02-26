@@ -11,9 +11,9 @@ from spotify_config import client_id, client_secret, redirect_uri, scope, userna
 
 # Debugging variables
 flask_debugging = True # Set to True when in Flask debug mode (DISABLE BEFORE DEPLOYING LIVE)
-debugging = False   # Set to True to only print results (don't insert into MongoDB)
-limiting = True     # Set to True to limit the number of iterations against Spotify API
-limit_cities = 5    # 
+debugging = False     # Set to True to only print results (don't insert into MongoDB)
+limiting = False     # Set to True to limit the number of iterations against Spotify API
+limit_cities = 15    # 
 limit_artists = 10  # *** ITERATION LIMITING THRESHOLDS: Only in effect when "LIMITING=True" ***
 limit_tracks = 20   #
 
@@ -44,7 +44,9 @@ def scrapeSpotify():
     """
     # Store dictionary of scraped values from scraping function
     if debugging == True:
-        cities = DataCollection.test()                                         # DEBUGGING ONLY
+        #cities = DataCollection.test()                                        # DEBUGGING ONLY
+        cities = DataCollection.scrape_spotify_info(limiting, limit_cities)   
+        return jsonify(cities)
     else:
         cities = DataCollection.scrape_spotify_info(limiting, limit_cities)    # THE REAL THING
 
@@ -66,6 +68,7 @@ def scrapeSpotify():
             # Loop through the top artists for this city, and determine the popularity values
             i = 0
             top_artists = []
+            artist_names = []
             for top_artist in city["top_artists"]:
                 # Exit out of for loop at appropriate threshold, if we are limiting artist iterations
                 if limiting == True and i == limit_artists:
@@ -84,13 +87,15 @@ def scrapeSpotify():
                 urn = top_artist["tracks"][0]
                 track = sp.track(urn)
 
-                # Get the artist's Spotify URI
+                # Get the artist's Spotify URI & name
                 artist_uri = track['artists'][0]['uri']
+                artist_name = track['artists'][0]['name']
 
-                # Get the artist info
-                artist_info = sp.artist(artist_uri)
+                # Set the artist name to the first artist attributed to the song
+                top_artist["artist"] = artist_name
 
                 # Get the artist popularity, and add it to their 'top_artist' item
+                artist_info = sp.artist(artist_uri)
                 artist_popularity = artist_info["popularity"]
                 top_artist["popularity"] = artist_popularity
 
@@ -98,24 +103,29 @@ def scrapeSpotify():
                 artist_genres = artist_info["genres"]
                 top_artist["genres"] = artist_genres
 
-                # Build top_artist object and append updated object to master collection
-                top_artists.append(top_artist)
+                # If not already added, append updated top_artist object to master collection
+                if artist_name not in artist_names:
+                    top_artists.append(top_artist)
+                    
+                # Track current artists in flat list to avoid duplicates
+                artist_names.append(artist_name) 
 
             # Sort 'top_artists' by popularity in descending order, update the field in the city object
             top_artists.sort(key=lambda x: x["popularity"], reverse=True)
             city["top_artists"] = top_artists
 
+            # Artist & song popularity logic:
             # Build 'top_5_artists' list: grab top 5 (by popularity) from 'top_artists' 
-            top_5_artists = []
+            top_10_artists = []
             i_art = 0
             for art in top_artists:
-                if i_art == 5:
-                    break
-                top_5_artists.append(art["artist"])
+                if i_art < 10:
+                    top_10_artists.append(art["artist"])
+                    
                 i_art += 1
                 
             # Update 'top_5_artists' field in the city object
-            city["top_5_artists"] = top_5_artists
+            city["top_5_artists"] = top_10_artists[:5]
 
             # Loop through all tracks for this city, and create a new list of objects with the track popularity
             #   BEFORE: [trk1, trk2, trk3, ...]
@@ -151,16 +161,18 @@ def scrapeSpotify():
                 # Append updated object to track_ids array
                 tracks.append(track_info)
 
-                # Determine most popular track
-                if highest_popularity < current_track_popularity:
-                    most_popular_track = trk
-                    highest_popularity = current_track_popularity
-                    most_popular_artist = current_track_artist
-                    most_popular_track_name = current_track_name
-        
-                print("most popular track: " + most_popular_track)
-                print("highest popularity: " + str(highest_popularity))
-                print("current track: " + trk )
+                # For the top 10 artists, determine the song with the highest popularity
+                if current_track_artist in top_10_artists:
+                    # Determine most popular track
+                    if highest_popularity < current_track_popularity:
+                        most_popular_track = trk
+                        highest_popularity = current_track_popularity
+                        most_popular_artist = current_track_artist
+                        most_popular_track_name = current_track_name        
+                
+                #print("most popular track: " + most_popular_track)
+                #print("highest popularity: " + str(highest_popularity))
+                #print("current track: " + trk )
                     
             # Update current city value with updated 'tracks' array info
             city["track_ids"] = tracks
