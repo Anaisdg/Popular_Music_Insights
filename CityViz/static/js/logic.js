@@ -1,5 +1,5 @@
 // Define endpoints 
-var citiesUrl = "http://localhost:5000/getCitiesFromMongo?limit=5";
+var citiesUrl = "http://localhost:5000/getCitiesFromMongo"; // ?limit=5";
 
 // Define layer arrays for each dataset
 var genre_layer_name = "Genre";
@@ -38,7 +38,7 @@ function createMaps(features) {
             "<table class='popup'><tr><td><b>Top Track:</b></td><td class='data'>" + feature.top_track.name + " (" + feature.top_track.artist + ")</td></tr>" +
             "<tr><td><b>Top Artists:</b></td><td>" + top5 + "</td></tr></table>" +
             "<b>Demographics:</b><blockquote>" +
-            "<b>Black:</b> " + feature.perc_black + "% <br />" + 
+            "<b>African-American:</b> " + feature.perc_black + "% <br />" + 
             "<b>Latino: </b>" + feature.perc_latino + "% <br />" + 
             "<b>Asian: </b>" + feature.perc_asian + "%" + 
             "</blockquote>")
@@ -66,100 +66,88 @@ function createMaps(features) {
         layers: [streetmap, L_cities]
     });
     
-    //
-    // Define Genre overlay names & data
-    //
-
-    /**
-     * A Function defining the Path options for styling 
-     * GeoJSON lines and polygons, called internally when data is added
-     * @param {*} feature 
-     */
-    function styleOverlayLayer(feature) {
-        return {
-            fillColor: "#ffa9a9",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.7
-        };
-    }
-    /**
-     * Function that defines how GeoJSON points spawn Leaflet layers. Internally called 
-     *  when data is added, passing the GeoJSON point feature and its LatLng.
-     * @param {*} feature 
-     * @param {number[]} latlng 
-     */
-    function bindOverlayLayer(feature, latlng) {
-        return L.circleMarker(latlng, {
-            radius: 30
-        });
-    }
-
     // 
-    // Genre layer filtering 
+    // *** Define Genre overlay names & data ***
+    // 
+    // Genre layer creation - Get list of all genres and loop through them to generate layer items
     //
-    var genreOverlays = {};
-    var genreLayers = L.control.layers();
-    
-    // Get list of all genres and loop through them to generate layer items
-    all_genres = getGenres(features);
+    var genre_arrays = getCategories("genre", features);
+    genreOverlays = createLayers(genre_arrays);
 
-    // Add filtering layer groups to our Leaflet map object
-    for (var i = 0; i < all_genres.length; i++) {  
-    //for (var i = 0; i < 1; i++) {
-        // Get the genre name and list of cities objects
-        var genre_name = all_genres[i].genre;
-        var genre_cities = all_genres[i].cities_array;
-
-        // Loop through all markers in the dataset for this genre
-        genre_cities.forEach(function (feature) {
-            // Check if there's already an overlay for this category
-            if (!genreOverlays[genre_name]) {
-
-                // Create and store new layer in overlays object
-                genreOverlays[genre_name] = new L.GeoJSON(null, {
-                    pointToLayer: bindOverlayLayer,
-                    style: styleOverlayLayer
-                });
-            }
-
-            // Add feature to corresponding layer
-            genreOverlays[genre_name].addData(feature);
-        }); 
-    }      
+    //
+    // Race layer creation - Get list of all races and loop through them to generate layer items
+    //
+    var race_arrays = getCategories("race", features);
+    raceOverlays = createLayers(race_arrays);
 
     //
     // Layer grouping logic 
     //
-
     // Master layer object
     var overlays = {
+        "Races": raceOverlays,
         "Genres": genreOverlays
     }
     // Define overlay options 
     var overlaysOptions = {
         groupCheckboxes: true,
-        collapsed: false,
-        position: 'topright'
+        collapsed: true,
+        position: 'bottomright'
     };
 
     // Add layer filter
     L.control.groupedLayers(null, overlays, overlaysOptions).addTo(myMap);
 
     // Use d3.selections to add a label to the grouping checkbox
-    d3.select(".leaflet-control-layers-group-label").insert("span", ":nth-child(2)").html("<i>Select all</i>");
+    d3.selectAll(".leaflet-control-layers-group-label").insert("span", ":nth-child(2)").html("<i>Select all</i>");
 }
 
 /**
- * Get list of all genres, with matching cities, for the top 5 artists
+ * From list of category-specific arrays, add layer options to map
  * @param {Object[]} data - JSON data
- * @returns {Object[]} genres - List of genres
+ * @returns {Object} - catOverlays object
  */
-function getGenres(data) {
+function createLayers(category_arrays) {
+    var catOverlays = {};
+
+    // Add filtering layer groups to our Leaflet map object
+    for (var i = 0; i < category_arrays.length; i++) {  
+
+        // Get the category name and list of cities objects
+        var cat_name = category_arrays[i].category;
+        var cat_cities = category_arrays[i].cities_array;
+
+        // Loop through all markers in the dataset for this category
+        cat_cities.forEach(function (feature) {
+            // Check if there's already an overlay for this category
+            if (!catOverlays[cat_name]) {
+
+                // Create and store new layer in overlays object
+                catOverlays[cat_name] = new L.GeoJSON(null, {
+                    pointToLayer: bindOverlayLayer,
+                    style: styleOverlayLayer
+                });
+            }
+
+            // Add feature to corresponding layer
+            catOverlays[cat_name].addData(feature);
+        }); 
+    }
+    
+    return catOverlays;
+}
+
+/**
+ * Get list of all categories ("genres" or "races"), with matching cities arrays, for the top 5 artists
+ * @param {string} type - Type of category (e.g., "genre", "race")
+ * @param {Object[]} data - JSON data
+ * @returns {Object[]} cat_arrays - List of categories
+ */
+function getCategories(type, data) {
     // **** Data format being returned ****
     //   [ 
     //      {
-    //          genre:        "Contemporary Country",
+    //          category:     "Contemporary Country",
     //          cities_array: [ 
     //                          { city 1 },
     //                          { city 2 }
@@ -167,7 +155,7 @@ function getGenres(data) {
     //                        ]
     //      },
     //      {
-    //          genre:        "West Coast Rap",
+    //          category:        "West Coast Rap",
     //          cities_array: [ 
     //                          { city 1 },
     //                          { city 2 }
@@ -176,61 +164,118 @@ function getGenres(data) {
     //      }
     //      ...
     //   ]
-    var genre_arrays = [];
 
-    // Loop through all cities to create master genre list
-    for (var i = 0; i < data.length; i++) {
+    // Initialize array variables
+    var cat_arrays = [];
+    var races = ["White", "African-American", "Latino"]; 
+
+    // Loop through all cities to create master category list
+    for (var c = 0; c < data.length; c++) {
         // Create stripped-down object for current city
         var cur_city_data = {
-            city: data[i].city,
-            geometry: data[i].geometry,
-            type: data[i].type,
-            perc_asian: data[i].perc_asian,
-            perc_black: data[i].perc_black,
-            perc_latino: data[i].perc_latino,
-            top_5_artists: data[i].top_5_artists,
-            top_track: data[i].top_track
+            city: data[c].city,
+            geometry: data[c].geometry,
+            type: data[c].type,
+            perc_asian: data[c].perc_asian,
+            perc_black: data[c].perc_black,
+            perc_latino: data[c].perc_latino,
+            top_5_artists: data[c].top_5_artists,
+            top_track: data[c].top_track
         }
 
         // Loop through all top_artists for this city
-        for (var c = 0; c < data[i].top_artists.length; c++) {
+        for (var a = 0; a < data[c].top_artists.length; a++) {
 
-            if (c < 5) { // Only loop through the top 5 artists (since the list is sorted by popularity we can do this)
-                
-                // Loop through all artist genres
-                for (var g = 0; g < data[i].top_artists[c].genres.length; g++) {
-                    // Set current genre name to a variable
-                    var cur_genre = data[i].top_artists[c].genres[g];
+            if (a < 5) { // Only loop through the top 5 artists (since the list is sorted by popularity we can do this)
+            
+                // Set the looping variable for our inner loop according to the list type
+                if (type == "genre") {
+                    var categories = data[c].top_artists[a].genres;
+
+                    // Loop through all artist categories
+                    for (var i = 0; i < categories.length; i++) {
+                        // Set current category name to a variable
+                        var cur_category = categories[i];
+                            
+                        // If we found a "cat_arrays" element for the current category, grab the 
+                        //  'cities_array' out of it, and push current city data to it
+                        var cur_cat_array = cat_arrays.find(el => el.category==cur_category);
+                        if (cur_cat_array) {
+
+                            cur_cat_array.cities_array.push(cur_city_data);
                         
-                    // If we found a "genre_arrays" element for the current genre, grab the 
-                    //  'cities_array' out of it, and push cities data to it
-                    var cur_genre_array = genre_arrays.find(el => el.genre==cur_genre);
-                    if (cur_genre_array) {
+                        // Otherwise, initialize the array element with list containing current city 
+                        //  object info
+                        } else {
+                            cat_arrays.push(
+                                { 
+                                    "category": cur_category,
+                                    "cities_array": [cur_city_data]
+                                }
+                            );                                
+                        }                
+                    }
+                    
+                } else if (type == "race") {
+                    var categories = races;
 
-                        cur_genre_array.cities_array.push(cur_city_data);
+                    // Grab the static 'race' or 'gender' value
+                    var cur_race = data[c].top_artists[a].race;
+
+                    // If we found a "cat_arrays" element for the current category, grab the 
+                    //  'cities_array' out of it, and push current city data to it
+                    var cur_cat_array = cat_arrays.find(el => el.category==cur_race);
+                    if (cur_cat_array) {
+
+                        cur_cat_array.cities_array.push(cur_city_data);
                     
                     // Otherwise, initialize the array element with list containing current city 
                     //  object info
                     } else {
-                        genre_arrays.push(
+                        cat_arrays.push(
                             { 
-                                "genre": cur_genre,
+                                "category": cur_race,
                                 "cities_array": [cur_city_data]
                             }
                         );                                
-                    }
-                
+                    }    
                 }
+                
             }
 
         }
     }
 
-    // Sort the Genres list alphabetically
-    genre_arrays.sort(compareGenreNames)
+    // Sort the category list alphabetically
+    cat_arrays.sort(compareCatNames)
 
-    // Return sorted genres list
-    return genre_arrays;
+    // Return sorted category list
+    return cat_arrays;
+}
+
+/**
+ * A Function defining the Path options for styling 
+ * GeoJSON lines and polygons, called internally when data is added
+ * @param {*} feature 
+ */
+function styleOverlayLayer(feature) {
+    return {
+        fillColor: "#ffa9a9",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.7
+    };
+}
+/**
+ * Function that defines how GeoJSON points spawn Leaflet layers. Internally called 
+ *  when data is added, passing the GeoJSON point feature and its LatLng.
+ * @param {*} feature 
+ * @param {number[]} latlng 
+ */
+function bindOverlayLayer(feature, latlng) {
+    return L.circleMarker(latlng, {
+        radius: 30
+    });
 }
 
 /**
@@ -238,10 +283,10 @@ function getGenres(data) {
  * @param {string} a - value
  * @param {string} b - value
  */
-function compareGenreNames(a,b) {
-    if (a.genre < b.genre)
+function compareCatNames(a,b) {
+    if (a.category < b.category)
       return -1;
-    if (a.genre > b.genre)
+    if (a.category > b.category)
       return 1;
     return 0;
 }

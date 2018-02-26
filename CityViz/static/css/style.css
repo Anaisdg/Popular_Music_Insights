@@ -48,7 +48,7 @@ html {
 }
 
 .leaflet-control-layers-group {
-  margin-bottom: .5em;
+  margin-bottom: 1.2em;
 }
 
 .leaflet-control-layers-group label {
@@ -56,8 +56,12 @@ html {
 }
 
 .leaflet-control-layers {
-  max-height: 600px;
+  max-height: 728px;
   overflow: auto;
+}
+
+.leaflet-control-layers-scrollbar {
+  overflow-y: unset !important;
 }
 /* End Styles to control layer groups */
 
