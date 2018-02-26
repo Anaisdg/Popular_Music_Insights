@@ -93,26 +93,20 @@ def scrape_spotify_info(limiting, limit):
         # Determine top arists
         dfArtists = pd.DataFrame(songs)
 
-        # Get the most number of songs in the playlist
-        max_artists = dfArtists["artist"].value_counts().max()
-
-        # Get the number of songs per artist
-        dfTopArtists = pd.DataFrame(dfArtists["artist"].value_counts())
-
-        # Get the artists with the most songs in the playlist
-        dfTopArtists = dfTopArtists[dfTopArtists["artist"] == max_artists].reset_index()
+        # Get the unique list of artists
+        dfUniqueArtists = pd.DataFrame(dfArtists["artist"].value_counts()).reset_index()
 
         # Merge above dataframes so we can keep track of the top artists' track IDs
-        dfMergedArtists = pd.merge(dfArtists, dfTopArtists, left_on = 'artist', right_on = 'index')
+        dfMergedArtists = pd.merge(dfArtists, dfUniqueArtists, left_on = 'artist', right_on = 'index')
 
         # Rename columns
         dfMergedArtists = dfMergedArtists.rename(columns={"artist_x": "Artist","name": "Track Name"})
         dfMergedArtists = dfMergedArtists[["Artist", "Track Name", "track_id"]]
-        top_artist_listing = dfTopArtists["index"]
+        top_artist_listing = dfUniqueArtists["index"]
 
         # Set list of top artists
         top_artists = list(top_artist_listing)
-
+        
         # Loop through all top artists, and assign their first track_id, which we'll need for Spotify API lookup
         #
         #    Artist object in the format:
