@@ -1,5 +1,5 @@
-// Define endpoints 
-var citiesUrl = "http://localhost:5000/getCitiesFromMongo"; // ?limit=5";
+// Define endpoints. (Use querystring syntax "?limit=[count]", when limiting dataset)
+var citiesUrl = "http://localhost:5000/getCitiesFromMongo"; 
 
 // Define layer arrays for each dataset
 var genre_layer_name = "Genre";
@@ -24,7 +24,6 @@ function createMaps(features) {
     // 
     // Plot cities on map
     //
-
     /**
      * Function that runs once for each item in the GeoJSON features array. Used 
      * to show details about GeoJSON feature.
@@ -67,18 +66,17 @@ function createMaps(features) {
     });
     
     // 
-    // *** Define Genre overlay names & data ***
+    // Genre overlay names & data
     // 
     // Genre layer creation - Get list of all genres and loop through them to generate layer items
-    //
     var genre_arrays = getCategories("genre", features);
-    genreOverlays = createLayers(genre_arrays);
+    genreOverlays = createLayers(genre_arrays, "genre");
 
     //
     // Race layer creation - Get list of all races and loop through them to generate layer items
     //
     var race_arrays = getCategories("race", features);
-    raceOverlays = createLayers(race_arrays);
+    raceOverlays = createLayers(race_arrays, "race");
 
     //
     // Layer grouping logic 
@@ -91,28 +89,193 @@ function createMaps(features) {
     // Define overlay options 
     var overlaysOptions = {
         groupCheckboxes: true,
-        collapsed: true,
+        collapsed: false,
         position: 'bottomright'
     };
 
     // Add layer filter
-    L.control.groupedLayers(null, overlays, overlaysOptions).addTo(myMap);
+    var grp = L.control.groupedLayers(null, overlays, overlaysOptions).addTo(myMap);
 
     // Use d3.selections to add a label to the grouping checkbox
     d3.selectAll(".leaflet-control-layers-group-label").insert("span", ":nth-child(2)").html("<i>Select all</i>");
+    
+    /** Map layer overlay "add" event */
+    myMap.on('overlayadd', function(overlay) {
+        updateOverlayCounts(overlay, "add");
+    });
+
+    /** Map layer overlay "remove" event */
+    myMap.on('overlayremove', function(overlay) {
+        updateOverlayCounts(overlay, "remove");
+    });
+
+    /**
+     * Perform "add" or "remove" actions on city-specific overlay circles, to assign city counts
+     *  for the selected layer (e.g., "Chillwave", "Country", "African-American")
+     * @param {Object} overlay - Current overlay object being updated
+     * @param {string} action - Type of event ('remove' or 'add')
+     */
+    function updateOverlayCounts(overlay, action) {
+        var num_selected = 0;  // Initialize number of selected checkboxes variable
+
+        // Get layer type being applied
+        var layer_type = overlay.group.name;
+        console.log(layer_type);
+
+        // Assign the layer object to variable
+        O_layers = overlay.layer._layers;
+        console.log(O_layers); // console.log it for tracking
+
+        // Assign length of dataset to variable
+        O_layers_count = Object.keys(O_layers).length;
+
+        // Get the SVG Group as a d3 object
+        var $svg_g = d3.select(".leaflet-overlay-pane svg g");
+
+        // comparison variables for layer
+        var city_current = "", city_previous = "";
+        var x_cur = "", y_cur = "", x_prev = "", y_prev = "";
+        var i_city = 0;
+
+        //
+        // *** Get the x/y coordinates for each city with layer overlays on the page:
+        //     Use them to output the <text> numeric value inside the SVG  ***
+        //
+        // Loop through all layers to get the cities being represented
+        //  *Note: The loop takes action on the iteration following the previous, so the tracking  
+        //          variables named "*_previous/_prev" are used to assign classes / count values
+        //
+        for (var i = 0; i < O_layers_count+1; i++) {
+            // *** Layer data operations - eliminate last iteration ***
+            if (i < O_layers_count) {
+                // Assign current layer object
+                var cur_layer = O_layers[Object.keys(O_layers)[i]];
+                //var cur_layer = O_layers[key];
+
+                // Set current coordinate
+                var x_cur = cur_layer._point.x;
+                var y_cur = cur_layer._point.y;
+
+                // Set current city
+                city_current = cur_layer.feature.city;
+            }
+
+            // If this is the only city value, a new city value, or the last city value,
+            //  get the respective layer counts for each city
+            if  (   (i==1 && O_layers_count==1)    || 
+                    (i >0 && (city_current != city_previous && i < O_layers_count)) ||
+                    (i==O_layers_count)
+                ) {
+                // City- and Layer type-specific class (e.g., "Genres_SanAntonio")
+                var city_class = layer_type + "_" + city_previous.replace(/\s/g, "");
+
+                // Get number of layers for the previous city (or current city if only 1)
+                var num_layers = i_city;
+
+                // For "remove" events, either remove the text overlay, or decrement it
+                if (action == "remove") { 
+                    // If there are still checkboxes checked, perform subtraction logic.
+                    //  Otherwise, clear the value out.
+                    var num_selected = d3.selectAll(".leaflet-control-layers-group input")
+                        .filter(function(d,i) { if (this.checked==true) return this; })
+                        .nodes().length;
+                        
+                    // Subtract the number of layers corresponding to the unchecked on from the total
+                    if (num_selected > 0) {
+                        // Update the city layer counts for the "remove" event
+                        num_layers = updateCityLayerCounts($svg_g, action, num_layers, city_class);
+                    } else {
+                        // Zero out the num_layers variable, so nothing gets appended below
+                        num_layers = 0; 
+                    }
+
+                } else {
+                    // Update the city layer counts for the "add" event
+                    num_layers = updateCityLayerCounts($svg_g, action, num_layers, city_class);
+                }
+
+                // Remove the existing <text> elements for this city (we add the updated one below)
+                $svg_g.selectAll("text." + city_class).remove();
+                
+                // Create a new <text> node inside the <svg> element, for the specified x/y coords
+                // Superimpose the <text> number onto the <path> circle for previous city
+                // (Only if we have non-zero layer count.)
+                if (num_layers > 0) {
+                    $svg_g.append("text")
+                        .classed(city_class, true)
+                        .attr("x", x_prev - 6)
+                        .attr("y", y_prev + 18)
+                        .style("font-size", "1.6em")
+                        .text(num_layers);
+                }
+
+                // Reset city count
+                i_city = 0;
+            }
+
+            // Assign this layer's city name & x/y coords to the old values for tracking
+            city_previous = city_current;
+            x_prev = x_cur;
+            y_prev = y_cur;
+            
+            // Iterate city count
+            i_city++;
+        }
+    }
+}
+
+/**
+ * Based on type of action (add or remove), increase or decrease the count of layers (results)
+ *  corresponding to the applicable cit(ies) 
+ * @param {Object} $svg_g - SVG group object (d3)
+ * @param {string} action - Type of event (add or remove)
+ * @param {string} city_class - CSS class name for the layer type-city combo
+ * @returns {number} - Number of layers
+ */
+function updateCityLayerCounts ($svg_g, action, num_layers, city_class) {
+    // Get the SVG Group as a d3 object
+    var $svg_g = d3.select(".leaflet-overlay-pane svg g");
+
+    // If there is already a <text> element for this city/layer type combo, increment its value
+    var $cityTextLayers = $svg_g.selectAll("text." + city_class);
+    var cur_layer_count = 0, highest_layer_count = 0;
+
+    // Check to see if any <text> elements exist.
+    if (!$cityTextLayers.empty()) {
+        // Loop through all instances of <text> elements and locate the one with the highest value.
+        $cityTextLayers.each(function(d) {
+            if (this.textContent !== "") {
+                cur_layer_count = parseInt(this.textContent);
+                // Keep track of the highest number of layers
+                if (highest_layer_count < cur_layer_count)
+                    highest_layer_count = cur_layer_count;
+            }
+        });
+        
+        if (action == "add") {
+            // Increase the total number of layers by the highest layer count value
+            num_layers = num_layers + highest_layer_count;
+        } else {
+            // Decrease the current layer count from the highest layer count (current total)
+            num_layers = highest_layer_count - num_layers;
+        }
+    }
+
+    // Return updated count
+    return num_layers;
 }
 
 /**
  * From list of category-specific arrays, add layer options to map
  * @param {Object[]} data - JSON data
+ * @param {string} type - Type of layer object
  * @returns {Object} - catOverlays object
  */
-function createLayers(category_arrays) {
+function createLayers(category_arrays, type) {
     var catOverlays = {};
 
     // Add filtering layer groups to our Leaflet map object
     for (var i = 0; i < category_arrays.length; i++) {  
-
         // Get the category name and list of cities objects
         var cat_name = category_arrays[i].category;
         var cat_cities = category_arrays[i].cities_array;
@@ -121,12 +284,23 @@ function createLayers(category_arrays) {
         cat_cities.forEach(function (feature) {
             // Check if there's already an overlay for this category
             if (!catOverlays[cat_name]) {
-
-                // Create and store new layer in overlays object
-                catOverlays[cat_name] = new L.GeoJSON(null, {
-                    pointToLayer: bindOverlayLayer,
-                    style: styleOverlayLayer
-                });
+                switch(type) {
+                    case "genre":
+                        // Create and store new layer in overlays object
+                        catOverlays[cat_name] = new L.GeoJSON(null, {
+                            pointToLayer: bindOverlayLayer,
+                            style: styleOverlayLayerGenre
+                        });
+                        break;
+                    case "race":
+                       // Create and store new layer in overlays object
+                        catOverlays[cat_name] = new L.GeoJSON(null, {
+                            pointToLayer: bindOverlayLayer,
+                            style: styleOverlayLayerRace
+                        });
+                        break;
+                    default:
+                }
             }
 
             // Add feature to corresponding layer
@@ -258,9 +432,22 @@ function getCategories(type, data) {
  * GeoJSON lines and polygons, called internally when data is added
  * @param {*} feature 
  */
-function styleOverlayLayer(feature) {
+function styleOverlayLayerGenre(feature) {
     return {
         fillColor: "#ffa9a9",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.7
+    };
+}
+/**
+ * A Function defining the Path options for styling 
+ * GeoJSON lines and polygons, called internally when data is added
+ * @param {*} feature 
+ */
+function styleOverlayLayerRace(feature) {
+    return {
+        fillColor: "#43e16d",
         weight: 1,
         opacity: 1,
         fillOpacity: 0.7
@@ -274,7 +461,7 @@ function styleOverlayLayer(feature) {
  */
 function bindOverlayLayer(feature, latlng) {
     return L.circleMarker(latlng, {
-        radius: 30
+        radius: 30 
     });
 }
 
