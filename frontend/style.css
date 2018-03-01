@@ -21,9 +21,37 @@
   padding: 10px;
 	color: #fff;
 }
-.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
-.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.centered {
+  text-align: center;
+}
+.vid-info {
+  color: rgb(255, 255, 255);
+  font-family: Avenir, Helvetica, sans-serif;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+}
+.vid-info h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-top: 0px;
+  line-height: 1.2;
+}
 .vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+.vid-info div {
+  font-size: 1.2em;
+}
+a.button {
+  display: block;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background: rgb(78, 156, 175);
+  padding: 10px;
+  border-radius: 5px;
+}
+.spacer {
+  height: 40px;
+}
 @media (min-aspect-ratio: 16/9) {
   .video-foreground { height: 300%; top: -100%; }
 }
@@ -31,7 +59,7 @@
   .video-foreground { width: 300%; left: -100%; }
 }
 @media all and (max-width: 600px) {
-.vid-info { width: 50%; padding: .5rem; }
+.vid-info { padding: .5rem; }
 .vid-info h1 { margin-bottom: .2rem; }
 }
 @media all and (max-width: 500px) {
