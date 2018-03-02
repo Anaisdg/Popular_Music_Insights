@@ -1,4 +1,4 @@
-Plotly.d3.csv('../csv/rnb_bub_form.csv', function (err, data) {
+Plotly.d3.csv('csv/rnb_bub_form.csv', function (err, data) {
   console.log(data)
 
   // Create a lookup table to sort and regroup the columns of data,
