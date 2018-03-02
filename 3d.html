@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="3d.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>3D</title>
+
+        <script type="text/javascript" src="3d.js"></script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="color:white">Billboard Top Songs by Year</h1>
+
+                    <select id="image_selector"  class="selectpicker" onchange="setImage(this.value)">              
+                        <option value="dataset1">Pop: 1946-1955</option>
+                        <option value="dataset2">Pop: 1956-1965</option>
+                        <option value="dataset3">Pop: 1966-1975</option>
+                        <option value="dataset4">Pop: 1976-1985</option>
+                        <option value="dataset5">Pop: 1986-1995</option>
+                        <option value="dataset6">Pop: 1996-2005</option>
+                        <option value="dataset7">Pop: 2006-2015</option>
+                        <option value="dataset8">RnB: 1946-1955</option>
+                        <option value="dataset9">RnB: 1956-1965</option>
+                        <option value="dataset10">RnB: 1966-1975</option>
+                        <option value="dataset11">RnB: 1976-1985</option>
+                        <option value="dataset12">RnB: 1986-1995</option>
+                        <option value="dataset13">RnB: 1996-2005</option>
+                        <option value="dataset14">RnB: 2006-2015</option>
+                        <option value="dataset15">Country: 1946-1955</option>
+                        <option value="dataset16">Country: 1956-1965</option>
+                        <option value="dataset17">Country: 1966-1975</option>
+                        <option value="dataset18">Country: 1976-1985</option>
+                        <option value="dataset19">Country: 1986-1995</option>
+                        <option value="dataset20">Country: 1996-2005</option>
+                        <option value="dataset21">Country: 2006-2015</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="carousel_wrapper">
+            <div class="carousel">
+                <div class="slide one" id='img1'>
+                <img src="(Everything I Do) I Do It for You.jpg" />
+                </div>
+                <div class="slide two" id='img2'>
+                <img src="All Shook Up.jpg" />
+                </div>
+                <div class="slide three" id='img3'>
+                <img src="Bad Day.jpg" />
+                </div>
+                <div class="slide four" id='img4'>
+                <img src="Ballad of the Green Berets.jpg" />
+                </div>
+                <div class="slide five" id='img5'>
+                <img src="Believe.jpg" />
+                </div>
+                <div class="slide six" id='img6'>
+                <img src="Bette Davis Eyes.jpg" />
+                </div>
+                <div class="slide seven" id='img7'>
+                <img src="Blue Tango.jpg" />
+                </div>
+                <div class="slide eight" id='img8'>
+                <img src="Boom Boom Pow.jpg" />
+                </div>
+                <div class="slide nine" id='img9'>
+                <img src="Breathe.jpg" />
+                </div>
+                <div class="slide ten" id='img10'>
+                <img src="(Everything I Do) I Do It for You.jpg" />
+                </div>
+            
+            </div><!-- / .carousel -->
+        </div><!-- / .carousel_wrapper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    </body>
+</html>
