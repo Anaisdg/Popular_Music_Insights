@@ -44,7 +44,7 @@ def scrape_spotify_info(limiting, limit):
         browser.visit(city_url)
 
         # Wait for page to load
-        time.sleep(2)
+        time.sleep(3)
 
         # Import Beautiful Soup to parse through HTML of page
         from bs4 import BeautifulSoup as bs
