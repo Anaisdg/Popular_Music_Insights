@@ -1,5 +1,14 @@
-// Define endpoints. (Use querystring syntax "?limit=[count]", when limiting dataset)
-var citiesUrl = "http://localhost:5000/getCitiesFromMongo"; 
+// Define endpoint. (Use querystring syntax "?limit=[count]", when limiting dataset)
+//  Note: If hosted on Heroku, format differently
+var host = window.location.hostname;
+var endpoint = "getCitiesFromMongo";
+if (host.includes("heroku")) {
+    var base_url = "https://" + host + "/";
+
+} else {
+    var base_url = "http://localhost:5000/"; 
+}
+var citiesUrl = base_url + endpoint;
 
 /**
  * Perform GET requests to USGS.gov query URLs using d3.json

@@ -11,13 +11,20 @@ flask_debugging = False  # Set to True when in Flask debug mode (DISABLE BEFORE 
 # Initialize Flask
 app = Flask(__name__)
 
+MONGODB_URI = os.environ.get('MONGODB_URI')
+if not MONGODB_URI:
+    MONGODB_URI = "mongodb://localhost:27017/insights_db"
+
+app.config['MONGO_URI'] = MONGODB_URI
+mongo = PyMongo(app)
+
 # Route that outputs database results
 @app.route("/getCitiesFromMongo")
 def getCitiesFromMongo():
     """ Retrieve & return all cities from the MongoDB collection 
         Returns: jsonified results """
-    db = connectToMongo()
-
+    db = mongo.db;
+    
     # If a limit was specified in the querystring, use it to limit our results
     if request.args.get('limit'):
         limit = int(request.args.get('limit'))        
@@ -49,20 +56,6 @@ def getJSON(cities):
                  """
     cities_json = json.loads(json_util.dumps(cities))
     return jsonify(cities_json)
-
-def connectToMongo():
-    """ Connect to MongoDB so we can store our 'city' documents as they are being built
-
-        Returns: db -- database connection object
-    """
-    MONGODB_URI = os.environ.get('MONGODB_URI')
-    if not MONGODB_URI:
-        MONGODB_URI = "mongodb://localhost:27017/insights_db"
-
-    app.config['MONGO_URI'] = MONGODB_URI
-    mongo = PyMongo(app)
-
-    return mongo.db  # Return the database instance from Mongo
 
 #
 # *** Main script execution ***
