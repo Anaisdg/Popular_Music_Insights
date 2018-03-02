@@ -1,13 +1,15 @@
 import os
+import time
 import DataCollection
 import spotipy
 import pprint
 import spotipy.util as util
 import pymongo
+import requests
 from flask import Flask, jsonify, request
 from bson import json_util, ObjectId
 import json
-from spotify_config import client_id, client_secret, redirect_uri, scope, username
+from spotify_config import clientid, clientsecret, redirecturi, scope, username
 
 # Debugging variables
 flask_debugging = True # Set to True when in Flask debug mode (DISABLE BEFORE DEPLOYING LIVE)
@@ -20,20 +22,6 @@ limit_tracks = 20   #
 # Initialize Flask
 app = Flask(__name__)
 
-# Route that outputs database results
-@app.route("/getCitiesFromMongo")
-def getCitiesFromMongo():
-    """ Retrieve & return all cities from the MongoDB collection 
-        Returns: jsonified results """
-    db = connectToMongo()
-
-    # If a limit was specified in the querystring, use it to limit our results
-    if request.args.get('limit'):
-        limit = int(request.args.get('limit'))        
-        return getJSON(wrapGeoJSON(db.Cities.find().limit(limit)))
-    else:
-        return getJSON(wrapGeoJSON(db.Cities.find()))
-
 # Route that produces our JSON result and populates database
 @app.route("/scrapeSpotify")
 def scrapeSpotify():
@@ -42,24 +30,24 @@ def scrapeSpotify():
 
         Returns: jsonified results 
     """
-    # Store dictionary of scraped values from scraping function
-    if debugging == True:
-        #cities = DataCollection.test()                                        # DEBUGGING ONLY
-        cities = DataCollection.scrape_spotify_info(limiting, limit_cities)   
-        return jsonify(cities)
-    else:
-        cities = DataCollection.scrape_spotify_info(limiting, limit_cities)    # THE REAL THING
+    # Set Spotify authentication token 
+    token = util.prompt_for_user_token(username, scope, clientid, clientsecret, redirecturi)
+    
+    if token:  # Authenticate with Spotify
+        # Store dictionary of scraped values from scraping function
+        if debugging == True:
+            cities = DataCollection.test()                                        # DEBUGGING ONLY
+            #cities = DataCollection.scrape_spotify_info(limiting, limit_cities)   
+            #return jsonify(cities)
+        else:
+            cities = DataCollection.scrape_spotify_info(limiting, limit_cities)    # THE REAL THING
 
-    # Loop through all cities in dataset
-    i = 0
-    for city in cities:
-        # Exit out of for loop at 2 if we are limiting city loop iterations
-        if limiting == True and i == limit_cities:
-            break
-        
-        # Set Spotify authentication token 
-        token = util.prompt_for_user_token(username, scope, client_id, client_secret, redirect_uri)
-        if token:  # Authenticate with Spotify
+        # Loop through all cities in dataset
+        i = 0
+        for city in cities:
+            # Exit out of for loop at 2 if we are limiting city loop iterations
+            if limiting == True and i == limit_cities:
+                break       
             #
             # Begin Spotify analysis (e.g., determine popularity for each artist in city list, top track)
             #
@@ -199,6 +187,8 @@ def scrapeSpotify():
             
             # Iterate counter
             i += 1
+    else: 
+        print("Connection to Spotify API failed - token invalid.")
 
     return getJSON(wrapGeoJSON(cities))
 
@@ -234,7 +224,7 @@ def connectToMongo():
     """
     mongodb_uri = os.environ.get("DATABASE_URI", "") or "mongodb://localhost:27017" 
     client = pymongo.MongoClient(mongodb_uri)
-    return client.songs_db  # Declare the DB
+    return client.insights_db  # Declare the DB
 
 #
 # *** Main script execution ***
