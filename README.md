@@ -14,6 +14,9 @@ I. A geographical examination of the musical preferences across 15 cities -- fil
 
 II. Emotional influences and lyrical content mapped by analysis of 70 years of top-charting Billboard songs by genre. 
 
+* Example of the emotional attributes of hit songs over the last 70 years: 
+![bubble_plot](readmeimg/bubble.png)
+
 
 **Requirements:**
 
@@ -21,7 +24,7 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * numpy == 1.13.1
 * python
 
-**APIs USED:**
+**APIs used:**
 
 * Spotify 
 * Watson Personality Insights
