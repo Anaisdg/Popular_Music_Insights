@@ -6,7 +6,7 @@ from bson import json_util, ObjectId
 import json
 
 # Debugging variables
-flask_debugging = True # Set to True when in Flask debug mode (DISABLE BEFORE DEPLOYING LIVE)
+flask_debugging = False  # Set to True when in Flask debug mode (DISABLE BEFORE DEPLOYING LIVE)
 
 # Initialize Flask
 app = Flask(__name__)
@@ -55,9 +55,14 @@ def connectToMongo():
 
         Returns: db -- database connection object
     """
-    mongodb_uri = os.environ.get("DATABASE_URI", "") or "mongodb://localhost:27017" 
-    client = pymongo.MongoClient(mongodb_uri)
-    return client.songs_db  # Declare the DB
+    MONGODB_URI = os.environ.get('MONGODB_URI')
+    if not MONGODB_URI:
+        MONGODB_URI = "mongodb://localhost:27017";
+
+    app.config['MONGO_URI'] = MONGODB_URI
+
+    client = pymongo.MongoClient(MONGODB_URI)
+    return client.insights_db  # Declare the DB
 
 #
 # *** Main script execution ***
