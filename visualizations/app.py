@@ -1,6 +1,6 @@
 import os
 import pprint
-import pymongo
+from flask_pymongo import PyMongo
 from flask import Flask, jsonify, request
 from bson import json_util, ObjectId
 import json
@@ -57,12 +57,12 @@ def connectToMongo():
     """
     MONGODB_URI = os.environ.get('MONGODB_URI')
     if not MONGODB_URI:
-        MONGODB_URI = "mongodb://localhost:27017";
+        MONGODB_URI = "mongodb://localhost:27017/insights_db"
 
     app.config['MONGO_URI'] = MONGODB_URI
+    mongo = PyMongo(app)
 
-    client = pymongo.MongoClient(MONGODB_URI)
-    return client.insights_db  # Declare the DB
+    return mongo.db  # Return the database instance from Mongo
 
 #
 # *** Main script execution ***
