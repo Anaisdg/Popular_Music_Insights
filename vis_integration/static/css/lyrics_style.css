@@ -1,0 +1,239 @@
+.title {
+  text-align: center;
+  font-family: Avenir, Helvetica, sans-serif;
+  font-size: 45px;
+}
+
+.title_description, .lyrics_title, .carousel_title {
+  text-align: center;
+  font-family: Avenir, Helvetica, sans-serif;
+}
+
+.carousel {
+  border: solid;
+  border-width: 0.5px;
+  border-color: gray;
+  font-size: 160px
+}
+
+.caroursel_description, .caroursel_description, .lyrics_description {
+  font-family: Avenir, Helvetica, sans-serif;
+}
+
+.pop, .country, .rnb {
+  text-align: center;
+  font-family: Avenir, Helvetica, sans-serif;
+
+}
+ol#emotions li{
+  display: inline;
+}
+.one{
+  font-family: Avenir, Helvetica, sans-serif;
+  color: #e6194b;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.two{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#3cb44b;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.three{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#ffe119;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.four{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#0082c8;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.five{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#f58231;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.six{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#911eb4;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.seven{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#46f0f0;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.eight{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#f032e6;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.nine{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#d2f53c;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.ten{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#fabebe;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.eleven{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#008080;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twelve{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#e6beff;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.thirteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#aa6e28;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.fourteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#d8d4a9;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.fifteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#800000;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.sixteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#aaffc3;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.seventeen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#808000;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.eighteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#ffd8b1;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.nineteen{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#000080;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twenty{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#808080;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentyone{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#000000;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentytwo{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#B06A3F;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentythree{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#F84EB8;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentyfour{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#074D26;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentyfive{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#586185;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentysix{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#A0C1B1;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentyseven{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#ECF190;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentyeight{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#9ACBEA;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.twentynine{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#662584;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.thirty{
+  font-family: Avenir, Helvetica, sans-serif;
+  color:#700C05;
+  font-style: bold;
+  font-size: 18px;
+}
