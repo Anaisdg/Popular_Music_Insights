@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="3d.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Song Wordcloud Carousel</title>
+
+        <script type="text/javascript" src="3d.js"></script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="color:white">Billboard Top Songs by Year</h1>
+                    <h3 style="color:white"> Select Genre and Decade for Wordclouds</h3>
+                    <select id="image_selector"  class="selectpicker" style = "height: 40px;font-weight: bold" onchange="setImage(this.value)">              
+                        <option value="dataset1">Pop:   1946-1956</option>
+                        <option value="dataset2">Pop:   1956-1965</option>
+                        <option value="dataset3">Pop:   1966-1975</option>
+                        <option value="dataset4">Pop:   1976-1985</option>
+                        <option value="dataset5">Pop:   1986-1995</option>
+                        <option value="dataset6">Pop: 1996-2005</option>
+                        <option value="dataset7">Pop: 2006-2015</option>
+                        <option value="dataset8">RnB: 1946-1955</option>
+                        <option value="dataset9">RnB: 1956-1965</option>
+                        <option value="dataset10">RnB: 1966-1975</option>
+                        <option value="dataset11">RnB: 1976-1985</option>
+                        <option value="dataset12">RnB: 1986-1995</option>
+                        <option value="dataset13">RnB: 1996-2005</option>
+                        <option value="dataset14">RnB: 2006-2015</option>
+                        <option value="dataset15">Country: 1946-1955</option>
+                        <option value="dataset16">Country: 1956-1965</option>
+                        <option value="dataset17">Country: 1966-1975</option>
+                        <option value="dataset18">Country: 1976-1985</option>
+                        <option value="dataset19">Country: 1986-1995</option>
+                        <option value="dataset20">Country: 1996-2005</option>
+                        <option value="dataset21">Country: 2006-2015</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="carousel_wrapper">
+            <div class="carousel">
+                <div class="slide one" >
+                   
+                    <img id='img1' src="img/Prisoner of Love.jpg" />
+                </div>
+                <div class="slide two" >
+                    <img id='img2' src="img/Near You.jpg" />
+                </div>
+                <div class="slide three" >
+                    <img id='img3'src="img/Twelfth Street Rag.jpg" />
+                </div>
+                <div class="slide four" >
+                    <img id='img4'src="img/Riders in the Sky.jpg" />
+                </div>
+                <div class="slide five" >
+                    <img id='img5' src="img/Goodnight, Irene.jpg" />
+                </div>
+                <div class="slide six" >
+                    <img  id='img6' src="img/Too Young.jpg" />
+                </div>
+                <div class="slide seven" >
+                    <img id='img7' src="img/Blue Tango.jpg" />
+                </div>
+                <div class="slide eight" >
+                    <img id='img8' src="img/Song from Moulin Rouge.jpg" />
+                </div>
+                <div class="slide nine" >
+                    <img id='img9'src="img/Little Things Mean a Lot.jpg" />
+                </div>
+                <div class="slide ten" >
+                    <img id='img10' src="img/Heartbreak Hotel.jpg" />
+                </div>
+            
+            </div><!-- / .carousel -->
+        </div><!-- / .carousel_wrapper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    </body>
+</html>
