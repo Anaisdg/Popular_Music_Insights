@@ -6,7 +6,7 @@
 
 **View the [Deployed app on Heroku](https://mighty-taiga-44531.herokuapp.com/static/Index.html).**
 
-**Outline**
+### Outline
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
@@ -33,11 +33,11 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 # File Descriptions
 
-```emotion_analysis```
+**[emotion_analysis](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/emotion_analysis)**
 
 Data retrieval and analysis of lyrics data supporting the Plotly bubble charts in ```vis_integration/static/bubble_charts```
 
-* country
+* ```country```
   * ```billboard_country.csv``` Top country hits and lyrics
   * ```country_bub_form.csv``` Output from country_bubble.ipynb
   * ```country_bubble.ipynb``` Converts country_combined.csv into format for bubble plot. 
@@ -46,7 +46,7 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
   * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts billboard_country.csv into country_lyr_results.
   * ```country_lyr_results``` Output from Watson API
 
-* Pop
+* ```pop```
   * ```billboard_pop.csv``` top pop hits and lyrics
   * ```pop_bub_form.csvOutput``` from pop_bubble.ipynb
   * ```pop_bubble.ipynb``` Converts pop_combined.csv into format for bubble plot. 
@@ -55,7 +55,7 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
   * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts billboard_pop.csv into pop_lyr_results.
   * ```pop_lyr_results``` Output from Watson API
 
-* R&B
+* ```rnb```
   * ```billboard_rnb.csv``` Top R&B hits and lyrics
   * ```rnb_bub_form.csv``` Output from rnb_bubble.ipynb
   * ```rnb_bubble.ipynb``` Converts rnb_combined.csv into format for bubble plot. 
@@ -70,27 +70,28 @@ Data retrieval and analysis of lyrics from [lyrics.wikia.com](http://lyrics.wiki
 
 ### Integration folders
 
-```vis_integration```
+**[vis_integration](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/vis_integration)**
 * Integration of all visualizations, with ```app.py``` to run Flask app.
 
-```spotify_data```
+**[spotify_data](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/spotify_data)**
 * Data retrieval, analysis, and storage of artist, genre, song, gender, race, and city demographic data - in support of the interactive Leaflet.js map. 
 
 ### Additional Information
 
+#### Inspiration for map visualization
 [Spotify Insights Blog](https://insights.spotify.com/us/2016/12/07/musical-map-of-the-world-2-0/)
 
-```proposal_img```
+**[proposal_img](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/proposal_img)**
 * Inspirational images for the project
 
-```readmeimg```
+**[readmeimg](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/readmeimg)**
 * Images used for this Readme
 
 ### Development folders
 
-```frontend```
+**[frontend](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/frontend)**
 * Landing page working directory
-```visualizations```
+**[visualizations](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/visualizations)**
 * Visualization pages working directory
 
 
