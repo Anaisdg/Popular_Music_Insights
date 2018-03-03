@@ -2,14 +2,12 @@
 
 ![Concert](readmeimg/concert.png)
 
-Analysis and visualization of songs, genres, lyrics, artists, demographics, race and gender. 
+Analysis and visualization of music - by artists, songs, genres, lyrics, demographics, race and gender.
 
 **Project Title:** 
-
 Popular Music Insights
 
 **Project Outline:**
-
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
 ![Map](readmeimg/map.png)
@@ -20,14 +18,14 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 **Technology used:**
 
-* Spotify API
-* Watson Personality Insights API
-* Beautiful Soup
-* Lyrics Wiki 
-* wordcloud Library
+* [Spotipy API for Spotify](spotipy.readthedocs.io/en/latest/#api-reference)
+* [Leaflet.js](http://leafletjs.com/)
+* [Watson Personality Insights API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3)
+* [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+* [Lyrics Wiki](http://lyrics.wikia.com)
+* [Wordcloud Library](http://amueller.github.io/word_cloud/)
 * Pandas
 * Numpy
-* Pandas
 * HTML, CSS, JS
 * MongoDB
 
@@ -67,7 +65,7 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
   * pop_lyr_results
   	* Output from Watson API
 
-* RnB
+* R&B
   * billboard_rnb.csv
   	* top rnb hits and lyrics
   * rnb_bub_form.csv
