@@ -12,7 +12,7 @@ Popular Music Insights
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
-![Map](readmeimg/map.png)
+![Map](readmeimg/Map.png)
 
 II. Emotional influences and lyrical content mapped by analysis of 70 years of top-charting Billboard songs by genre. 
 * Example of the carousel that displays the word clouds for top hits 
