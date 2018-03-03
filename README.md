@@ -18,14 +18,14 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 ### Technologies Employed
 
-* [Spotipy API for Spotify](spotipy.readthedocs.io/en/latest/#api-reference)
+* [Spotipy API for Spotify](http://spotipy.readthedocs.io/en/latest/#api-reference)
 * [Flask](http://flask.pocoo.org/docs/0.12/quickstart/) and [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
 * [Leaflet.js](http://leafletjs.com/)
 * [D3.js](http://d3js.org)
 * [Watson Personality Insights API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3)
 * [Splinter](https://splinter.readthedocs.io/en/latest/)
 * [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-* [Lyrics Wiki](http://lyrics.wikia.com)
+* [LyricWiki](http://lyrics.wikia.com)
 * [Wordcloud Library](http://amueller.github.io/word_cloud/)
 * Pandas
 * Numpy
