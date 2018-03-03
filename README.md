@@ -2,12 +2,9 @@
 
 ![Concert](readmeimg/concert.png)
 
-## Analysis and visualization of music - by artists, songs, genres, lyrics, demographics, race and gender.
+## Analysis and visualization of musical tastes by artists, songs, genres, lyrics, demographics, race, and gender
 
-**Project Title:** 
-Popular Music Insights
-
-**Project Outline:**
+**Outline:**
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
@@ -67,17 +64,19 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
 
 ```wordcloud_data```
 
-Data retrieval and analysis of lyrics from lyrics.wikia.com scraped HTML; generation of wordcloud images from WordCloud matplotlib Python layer.
+Data retrieval and analysis of lyrics from [lyrics.wikia.com](http://lyrics.wikia.com) scraped HTML; generation of word cloud images from WordCloud (using matplotlib/Python).
 
 ### Integration folders
 
 ```vis_integration```
-* Integration of all parts for final presesntation and ```app.py``` for flask deployment
+* Integration of all visualizations, with ```app.py``` to run Flask app.
 
 ```spotify_data```
-* Data retrieval, analysis, and storage of artist, genre, song, gender, race, and city demographic data, in support of the interactive Leaflet.js map. 
+* Data retrieval, analysis, and storage of artist, genre, song, gender, race, and city demographic data - in support of the interactive Leaflet.js map. 
 
 ### Additional Information
+
+[Spotify Insights Blog](https://insights.spotify.com/us/2016/12/07/musical-map-of-the-world-2-0/)
 
 ```proposal_img```
 * Inspirational images for the project
@@ -88,9 +87,9 @@ Data retrieval and analysis of lyrics from lyrics.wikia.com scraped HTML; genera
 ### Development folders
 
 ```frontend```
-* Leftover branch for front end development
+* Landing page working directory
 ```visualizations```
-* Test folder for front end changes
+* Visualization pages working directory
 
 
 
