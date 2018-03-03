@@ -1,160 +1,155 @@
-/*var $img1 = document.getElementById("img1")
-var $img2 = document.getElementById("img2")
-var $img3 = document.getElementById("img3")
-var $img4 = document.getElementById("img4")
-var $img5 = document.getElementById("img5")
-var $img6 = document.getElementById("img6")
-var $img7 = document.getElementById("img7")
-var $img8 = document.getElementById("img8")
-var $img9 = document.getElementById("img9")
-var $img10 = document.getElementById("img10")*/
+
 
 function updateImg(dataset) {
   var data = [];
   switch (dataset) {
     case "dataset1":
-      data = [p1,p2, p3, p4, p5, p6, p7, p8,p9,p10];
-      break;
-    case "dataset2":
-      data = [ p11, p12, p14,p16,p17,p18,p19,p20,p21,p22];
-      break;
-    case "dataset3":
-      data = [p23,p24,p25,p26,p27,p28,p29,p30,p31, p32];
-      break;
-      case "dataset4":
-      data = [p33,p34,p35,p36,p37,p38,p39,p40,p41, p42];
-      break;
-    case "dataset5":
-      data = [p43, p44,p45,p46,p47,p48,p49,p50,p51, p52];
-      break;
-    case "dataset6":
-      data = [p53,p54,p55,p56,p57,p58,p59,p60,p61, p62];
-      break; 
-    case "dataset7": 
-      data = [p63,p64,p65,p66,p67,p68,p69,p70,p71,p72]; 
-      break;  
-      
+    data = ['p1','p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8','p9','p10'];
+    break;
+  case "dataset2":
+    data = [ 'p11', 'p12', 'p14','p16','p17','p18','p19','p20','p21','p22'];
+    break;
+  case "dataset3":
+    data = ['p23','p24','p25','p26','p27','p28','p29','p30','p31', 'p32'];
+    break;
+    case "dataset4":
+    data = ['p33','p34','p35','p36','p37','p38','p39','p40','p41', 'p42'];
+    break;
+  case "dataset5":
+    data = ['p43', 'p44','p45','p46','p47','p48','p49','p50','p51', 'p52'];
+    break;
+  case "dataset6":
+    data = ['p53','p54','p55','p56','p57','p58','p59','p60','p61', 'p62'];
+    break; 
+  case "dataset7": 
+    data = ['p63','p64','p65','p66','p67','p68','p69','p70','p71','p72']; 
+    break;  
+    
     case "dataset8":
-      data = [r2, r3, r5, r6, r7, r8,r9,r10,r11, r12];
-      break;
-    case "dataset9":
-      data = [r13, r14,r15,r16,r17,r18,r19,r20,r21, r22];
-      break;
-    case "dataset10":
-      data = [r23,r24,r25,r26,r27,r28,r29,r30,r31, r32];
-      break;
-      case "dataset11":
-      data = [ r33,r34,r35,r36,r37,r38,r39,r40,r41, r42];
-      break;
-    case "dataset12":
-      data = [ r43, r44,r45,r46,r47,r48,r49,r50,r51, r52];
-      break;
-    case "dataset13":
-      data = [ r53,r54,r55,r56,r57,r58,r59,r60,r61, r62];
-      break; 
-    case "dataset14": 
-      data = [ r63,r64,r65,r66,r67,r68,r69,r70,r71,r72]; 
-      break; 
+    data = ['r2', 'r3', 'r5', 'r6', 'r7', 'r8','r9','r10','r11', 'r12'];
+    break;
+  case "dataset9":
+    data = ['r13', 'r14','r15','r16','r17','r18','r19','r20','r21', 'r22'];
+    break;
+  case "dataset10":
+    data = ['r23','r24','r25','r26','r27','r28','r29','r30','r31', 'r32'];
+    break;
+    case "dataset11":
+    data = [ 'r33','r34','r35','r36','r37','r38','r39','r40','r41', 'r42'];
+    break;
+  case "dataset12":
+    data = [ 'r43', 'r44','r45','r46','r47','r48','r49','r50','r51', 'r52'];
+    break;
+  case "dataset13":
+    data = [ 'r53','r54','r55','r56','r57','r58','r59','r60','r61', 'r62'];
+    break; 
+  case "dataset14": 
+    data = [ 'r63','r64','r65','r66','r67','r68','r69','r70','r71','r72']; 
+    break; 
     case "dataset15":
-      data = [c1,c2, c3, c4, c5, c6, c7, c8,c9,c10];
-      break;
-    case "dataset16":
-      data = [ c11, c12, c13, c14,c15,c16,c17,c18,c19,c20];
-      break;
-    case "dataset17":
-      data = [c21, c22, c23,c24,c25,c26,c27,c28,c29,c30];
-      break;
+    data = ['c1','c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8','c9','c10'];
+    break;
+  case "dataset16":
+    data = [ 'c11', 'c12', 'c13', 'c14','c15','c16','c17','c18','c19','c20'];
+    break;
+  case "dataset17":
+    data = ['c21', 'c22', 'c23','c24','c25','c26','c27','c28','c29','c30'];
+    break;
     case "dataset18":
-      data = [c31, c32, c33,c34,c35,c36,c37,c38,c39,c40];
-      break;
-    case "dataset19":
-      data = [c41, c42, c43, c44,c45,c46,c47,c48,c49,c50];
-      break;
-    case "dataset20":
-      data = [c51, c52, c53,c54,c55,c56,c57,c58,c59,c60];
-      break; 
-    case "dataset21": 
-      data = [c61, c62, c63,c64,c65,c66,c67,c68,c69,c70]; 
-      break;    
-    default:
-      data = [p50,p51, p52, p53, p54, p55, p56, p57, p58,p59];
-  
-}};
+    data = ['c31', 'c32', 'c33','c34','c35','c36','c37','c38','c39','c40'];
+    break;
+  case "dataset19":
+    data = ['c41', 'c42', 'c43', 'c44','c45','c46','c47','c48','c49','c50'];
+    break;
+  case "dataset20":
+    data = ['c51', 'c52', 'c53','c54','c55','c56','c57','c58','c59','c60'];
+    break; 
+  case "dataset21": 
+    data = ['c61', 'c62', 'c63','c64','c65','c66','c67','c68','c69','c70']; 
+    break;    
+  default:
+      
+}
+
+return data;
+
+};
 
 function setImage(data) {    
-   /* d3.select("image_selector").on("change", function() {*/
-    updateImg(data);
+    console.log(data);
+    var ds = updateImg(data);
+    console.log("ds: " + ds[0]);
     var images = {
-        p46 : '(Everything I Do) I Do It for You.jpg',
-        p12 : 'All Shook Up.jpg',
-        p61 : 'Bad Day.jpg',
-        p21 : 'Ballad of the Green Berets.jpg',
-        p54 : 'Believe.jpg',
-        p36 : 'Bette Davis Eyes.jpg',
-        p7 : 'Blue Tango.jpg',
-        p64 : 'Boom Boom Pow.jpg',
-        p55 : 'Breathe.jpg',
-        p25 : 'Bridge over Troubled Water.jpg',
-        p35 : 'Call Me.jpg',
-        p52 : 'Candle in the Wind 1997 Something About the Way You Look Tonight.jpg',
-        p40 : 'Careless Whisper.jpg',
-        p10 : 'Cherry Pink and Apple Blossom White.jpg',
-        p47 : 'End of the Road.jpg',
-        p38 : 'Every Breath You Take.jpg',
-        p43 : 'Faith.jpg',
-        p50 : 'Gangstas Paradise.jpg',
-        p5 : 'Goodnight, Irene.jpg',
-        p56 : 'Hanging by a Moment.jpg',
-        p69 : 'Happy.jpg',
-        p11 : 'Heartbreak Hotel.jpg',
-        p23 : 'Hey Jude.jpg',
-        p45 : 'Hold On.jpg',
-        p57 : 'How You Remind Me.jpg',
-        p19 : 'I Want to Hold Your Hand.jpg',
-        p48 : 'I Will Always Love You.jpg',
-        p58 : 'In da Club.jpg',
-        p62 : 'Irreplaceable.jpg',
-        p26 : 'Joy to the World.jpg',
-        p9 : 'Little Things Mean a Lot.jpg',
-        p44 : 'Look Away.jpg',
-        p30 : 'Love Will Keep Us Together.jpg',
-        p71 : 'Love Yourself.jpg',
-        p63 : 'Low.jpg',
-        p51 : 'Macarena (Bayside Boys Mix).jpg',
-        p34 : 'My Sharona.jpg',
-        p2 : 'Near You.jpg',
-        p37 : 'Physical.jpg',
-        p1 : 'Prisoner of Love.jpg',
-        p4 : 'Riders in the Sky.jpg',
-        p66 : 'Rolling in the Deep.jpg',
-        p33 : 'Shadow Dancing.jpg',
-        p72 : 'Shape of You.jpg',
-        p31 : 'Silly Love Songs.jpg',
-        p67 : 'Somebody That I Used to Know.jpg',
-        p8 : 'Song from Moulin Rouge.jpg',
-        p17 : 'Stranger on the Shore.jpg',
-        p18 : 'Sugar Shack.jpg',
-        p24 : 'Sugar, Sugar.jpg',
-        p41 : "That's What Friends Are For.jpg",
-        p14 : 'The Battle of New Orleans.jpg',
-        p27 : 'The First Time Ever I Saw Your Face.jpg',
-        p49 : 'The Sign.jpg',
-        p29 : 'The Way We Were.jpg',
-        p68 : 'Thrift Shop.jpg',
-        p28 : "Tie a Yellow Ribbon 'Round the Ole Oak Tree.jpg",
-        p65 : 'Tik Tok.jpg',
-        p22 : 'To Sir with Love.jpg',
-        p32 : "Tonight's the Night (Gonna Be Alright).jpg",
-        p53 : 'Too Close.jpg',
-        p6 : 'Too Young.jpg',
-        p16 : "Tossin' and Turnin'.jpg",
-        p3 : 'Twelfth Street Rag.jpg',
-        p70 : 'Uptown Funk.jpg',
-        p42 : 'Walk Like an Egyptian.jpg',
-        p60 : 'We Belong Together.jpg',
-        p39 : 'When Doves Cry.jpg',
-        p20 : 'Wooly Bully.jpg',
-        p59 : 'Yeah!.jpg',
+       p46 : '(Everything I Do) I Do It for You.jpg',
+       p12 : 'All Shook Up.jpg',
+       p61 : 'Bad Day.jpg',
+       p21 : 'Ballad of the Green Berets.jpg',
+       p54 : 'Believe.jpg',
+       p36 : 'Bette Davis Eyes.jpg',
+       p7 : 'Blue Tango.jpg',
+       p64 : 'Boom Boom pow.jpg',
+       p55 : 'Breathe.jpg',
+       p25 : 'Bridge over Troubled Water.jpg',
+       p35 : 'Call Me.jpg',
+       p52 : 'Candle in the Wind 1997 Something About the Way You Look Tonight.jpg',
+       p40 : 'Careless Whisper.jpg',
+       p10 : 'Cherry pink and Apple Blossom White.jpg',
+       p47 : 'End of the Road.jpg',
+       p38 : 'Every Breath You Take.jpg',
+       p43 : 'Faith.jpg',
+       p50 : 'Gangstas paradise.jpg',
+       p5 : 'Goodnight, Irene.jpg',
+       p56 : 'Hanging by a Moment.jpg',
+       p69 : 'Happy.jpg',
+       p11 : 'Heartbreak Hotel.jpg',
+       p23 : 'Hey Jude.jpg',
+       p45 : 'Hold On.jpg',
+       p57 : 'How You Remind Me.jpg',
+       p19 : 'I Want to Hold Your Hand.jpg',
+       p48 : 'I Will Always Love You.jpg',
+       p58 : 'In da Club.jpg',
+       p62 : 'Irreplaceable.jpg',
+       p26 : 'Joy to the World.jpg',
+       p9 : 'Little Things Mean a Lot.jpg',
+       p44 : 'Look Away.jpg',
+       p30 : 'Love Will Keep Us Together.jpg',
+       p71 : 'Love Yourself.jpg',
+       p63 : 'Low.jpg',
+       p51 : 'Macarena (Bayside Boys Mix).jpg',
+       p34 : 'My Sharona.jpg',
+       p2 : 'Near You.jpg',
+       p37 : 'Physical.jpg',
+       p1 : 'Prisoner of Love.jpg',
+       p4 : 'Riders in the Sky.jpg',
+       p66 : 'Rolling in the Deep.jpg',
+       p33 : 'Shadow Dancing.jpg',
+       p72 : 'Shape of You.jpg',
+       p31 : 'Silly Love Songs.jpg',
+       p67 : 'Somebody That I Used to Know.jpg',
+       p8 : 'Song from Moulin Rouge.jpg',
+       p17 : 'Stranger on the Shore.jpg',
+       p18 : 'Sugar Shack.jpg',
+       p24 : 'Sugar, Sugar.jpg',
+       p41 : "That's What Friends Are For.jpg",
+       p14 : 'The Battle of New Orleans.jpg',
+       p27 : 'The First Time Ever I Saw Your Face.jpg',
+       p49 : 'The Sign.jpg',
+       p29 : 'The Way We Were.jpg',
+       p68 : 'Thrift Shop.jpg',
+       p28 : "Tie a Yellow Ribbon 'Round the Ole Oak Tree.jpg",
+       p65 : 'Tik Tok.jpg',
+       p22 : 'To Sir with Love.jpg',
+       p32 : "Tonight's the Night (Gonna Be Alright).jpg",
+       p53 : 'Too Close.jpg',
+       p6 : 'Too Young.jpg',
+       p16 : "Tossin' and Turnin'.jpg",
+       p3 : 'Twelfth Street Rag.jpg',
+       p70 : 'Uptown Funk.jpg',
+       p42 : 'Walk Like an Egyptian.jpg',
+       p60 : 'We Belong Together.jpg',
+       p39 : 'When Doves Cry.jpg',
+       p20 : 'Wooly Bully.jpg',
+       p59 : 'Yeah!.jpg',
         r8: "(Mama) He Treats Your Daughter Mean.jpg",
         r2:"Ain't Nobody Here But Us Chickens.jpg",
         r61: "Be Without You.jpg",
@@ -298,10 +293,11 @@ function setImage(data) {
         
 
 
-    } 
-    for (var i = 1; i < 11; i ++) {
-        var image = images.c28;
-        d3.select("img"+String(i)).attr('src',image);
-};
+    }; 
+    
+    for (var i = 0; i < 10; i++) {
+        var $image = document.getElementById("img"+String(i+1));
+        d3.select($image).attr('src',"img/" + images[ds[i]]);
+        };
 
 };
