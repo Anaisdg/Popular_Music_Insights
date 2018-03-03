@@ -2,8 +2,11 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: Avenir, Helvetica, sans-serif;
 }
 
+h1 { padding-left: 10px; }
+h4, p, ul li { padding-left: 1em;}
 /* set body and html to 100% of the screen size */
 body,
 html {
@@ -65,11 +68,23 @@ html {
 }
 /* End Styles to control layer groups */
 
+table.popup {
+  min-width: 347px;
+}
+
 table.popup td {
   width:8em;
   vertical-align: top;
-  padding-top: 1.5em;
+  padding: 1.5em 1em 0 0;
+  font-size: 1.1em;
 }
+
+table.popup td.demographics {
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 1em;
+}
+
+.leaflet-popup-content { font-size: 1.1em; }
 
 table.popup td.data {
   width:15em;
