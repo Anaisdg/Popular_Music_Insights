@@ -16,11 +16,12 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * Example of the emotional attributes of hit songs over the last 70 years: 
 ![bubble_plot](readmeimg/bubble.png)
 
-### Technology used
+### Technologies Employed
 
 * [Spotipy API for Spotify](spotipy.readthedocs.io/en/latest/#api-reference)
 * [Flask](http://flask.pocoo.org/docs/0.12/quickstart/) and [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
 * [Leaflet.js](http://leafletjs.com/)
+* [D3.js](http://d3js.org)
 * [Watson Personality Insights API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3)
 * [Splinter](https://splinter.readthedocs.io/en/latest/)
 * [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
@@ -28,7 +29,7 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * [Wordcloud Library](http://amueller.github.io/word_cloud/)
 * Pandas
 * Numpy
-* HTML, CSS, JS
+* HTML + CSS + JavaScript
 * MongoDB
 
 # File Descriptions
@@ -68,7 +69,7 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
   * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts ```billboard_rnb.csv``` into ```rnb_lyr_results```.
   * ```rnb_lyr_results``` Output from Watson API
 
-### Integration folders
+### Integration Directories
 
 **[vis_integration](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/vis_integration)**
 * Integration of all visualizations, with ```app.py``` to run Flask app.
@@ -87,10 +88,11 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
 **[readmeimg](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/readmeimg)**
 * Images used for this Readme
 
-### Development folders
+### Development Directories
 
 **[frontend](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/frontend)**
 * Landing page working directory
+
 **[visualizations](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/visualizations)**
 * Visualization pages working directory
 
