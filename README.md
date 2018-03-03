@@ -20,8 +20,10 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 **Technology used:**
 
 * [Spotipy API for Spotify](spotipy.readthedocs.io/en/latest/#api-reference)
+* [Flask](http://flask.pocoo.org/docs/0.12/quickstart/) and [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
 * [Leaflet.js](http://leafletjs.com/)
 * [Watson Personality Insights API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3)
+* [Splinter](https://splinter.readthedocs.io/en/latest/)
 * [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 * [Lyrics Wiki](http://lyrics.wikia.com)
 * [Wordcloud Library](http://amueller.github.io/word_cloud/)
@@ -32,7 +34,8 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 # File Descriptions
 
-#### emotion_analysis
+```emotion_analysis```
+Data retrieval and analysis of lyrics data supporting the Plotly bubble charts in ```vis_integration/static/bubble_charts``` 
 * country
   * billboard_country.csv
   	* top country hits and lyrics
@@ -83,24 +86,24 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 ### Integration folders
 
-#### vis_integration
+```vis_integration```
 * Integration of all parts for final presesntation and app.py for flask deployment 
-#### spotify_data
-* Artist, genre, song, gender, race, and city demographic data for the interactive map. 
+```spotify_data```
+* Data retrieval, analysis, and storage of artist, genre, song, gender, race, and city demographic data, in support of the interactive Leaflet.js map. 
 
 ### Additional Information
 
-#### proposal_img
+```proposal_img```
 * Inspirational images for the project
-#### readmeimg 
-* Images used for this readme
+```readmeimg```
+* Images used for this Readme
 
 ### Development folders
 
-#### frontend
+```frontend```
 * Leftover branch for front end development
-#### visualizations
-* Test folder for frontend changes
+```visualizations```
+* Test folder for front end changes
 
 
 
