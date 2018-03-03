@@ -35,59 +35,41 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 # File Descriptions
 
 ```emotion_analysis```
-Data retrieval and analysis of lyrics data supporting the Plotly bubble charts in ```vis_integration/static/bubble_charts``` 
+
+Data retrieval and analysis of lyrics data supporting the Plotly bubble charts in ```vis_integration/static/bubble_charts```
+
 * country
-  * billboard_country.csv
-  	* top country hits and lyrics
-  * country_bub_form.csv
-  	* Output from country_bubble.ipynb
-  * country_bubble.ipynb
-  	* Converts country_combined.csv into format for bubble plot. 
-  * country_combined.csv
-  	* Output from country_exploration.ipynb
-  * country_exploration.ipynb
-  	* Takes country_lyr_results and combines together into one source in country_exploration.ipynb and stored as output in country_combined.csv
-  * country_to_watson.ipynb
-  	* Watson Personality Insights API call and analysis. Converts billboard_country.csv into country_lyr_results.
-  * country_lyr_results
-  	* Output from Watson API
+  * ```billboard_country.csv``` Top country hits and lyrics
+  * ```country_bub_form.csv``` Output from country_bubble.ipynb
+  * ```country_bubble.ipynb``` Converts country_combined.csv into format for bubble plot. 
+  * ```country_combined.csv``` Output from country_exploration.ipynb
+  * ```country_exploration.ipynb``` Takes country_lyr_results and combines together into one source in country_exploration.ipynb and stored as output in country_combined.csv
+  * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts billboard_country.csv into country_lyr_results.
+  * ```country_lyr_results``` Output from Watson API
 
 * Pop
-  * billboard_pop.csv
-  	* top pop hits and lyrics
-  * pop_bub_form.csv
-  	* Output from pop_bubble.ipynb
-  * pop_bubble.ipynb
-  	* Converts pop_combined.csv into format for bubble plot. 
-  * pop_combined.csv
-  	* Output from pop_exploration.ipynb
-  * pop_exploration.ipynb
-  	* Takes pop_lyr_results and combines together into one source in pop_exploration.ipynb and stored as output in pop_combined.csv
-  * country_to_watson.ipynb
-  	* Watson Personality Insights API call and analysis. Converts billboard_pop.csv into pop_lyr_results.
-  * pop_lyr_results
-  	* Output from Watson API
+  * ```billboard_pop.csv``` top pop hits and lyrics
+  * ```pop_bub_form.csvOutput``` from pop_bubble.ipynb
+  * ```pop_bubble.ipynb``` Converts pop_combined.csv into format for bubble plot. 
+  * ```pop_combined.csv``` Output from pop_exploration.ipynb
+  * ```pop_exploration.ipynb``` Takes pop_lyr_results and combines together into one source in pop_exploration.ipynb and stored as output in pop_combined.csv
+  * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts billboard_pop.csv into pop_lyr_results.
+  * ```pop_lyr_results``` Output from Watson API
 
 * R&B
-  * billboard_rnb.csv
-  	* top rnb hits and lyrics
-  * rnb_bub_form.csv
-  	* Output from rnb_bubble.ipynb
-  * rnb_bubble.ipynb
-  	* Converts rnb_combined.csv into format for bubble plot. 
-  * rnb_combined.csv
-  	* Output from rnb_exploration.ipynb
-  * rnb_exploration.ipynb
-  	* Takes rnb_lyr_results and combines together into one source in rnb_exploration.ipynb and stored as output in rnb_combined.csv
-  * country_to_watson.ipynb
-  	* Watson Personality Insights API call and analysis. Converts billboard_rnb.csv into rnb_lyr_results.
-  * rnb_lyr_results
-  	* Output from Watson API
+  * ```billboard_rnb.csv``` Top R&B hits and lyrics
+  * ```rnb_bub_form.csv``` Output from rnb_bubble.ipynb
+  * ```rnb_bubble.ipynb``` Converts rnb_combined.csv into format for bubble plot. 
+  * ```rnb_combined.csv``` Output from rnb_exploration.ipynb
+  * ```rnb_exploration.ipynb``` Takes ```rnb_lyr_results``` and combines together into one source in ```rnb_exploration.ipynb``` and stored as output in rnb_combined.csv
+  * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts ```billboard_rnb.csv``` into ```rnb_lyr_results```.
+  * ```rnb_lyr_results``` Output from Watson API
 
 ### Integration folders
 
 ```vis_integration```
-* Integration of all parts for final presesntation and app.py for flask deployment 
+* Integration of all parts for final presesntation and ```app.py``` for flask deployment
+
 ```spotify_data```
 * Data retrieval, analysis, and storage of artist, genre, song, gender, race, and city demographic data, in support of the interactive Leaflet.js map. 
 
@@ -95,6 +77,7 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
 
 ```proposal_img```
 * Inspirational images for the project
+
 ```readmeimg```
 * Images used for this Readme
 
