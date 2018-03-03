@@ -11,9 +11,12 @@ Popular Music Insights
 **Project Outline:**
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
+* Example of the interactive map that examines the musical preferences for particular cities
+**Stephen your image goes here**
 
 II. Emotional influences and lyrical content mapped by analysis of 70 years of top-charting Billboard songs by genre. 
-
+* Example of the carousel that displays the word clouds for top hits 
+**John your image goes here**
 * Example of the emotional attributes of hit songs over the last 70 years: 
 ![bubble_plot](readmeimg/bubble.png)
 
@@ -28,11 +31,13 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 
 * Spotify 
 * Watson Personality Insights
-*
+* **John your API goes here**
 
 # File descriptions
 
 #### spotify_data
+
+**Stephen your data description goes here**
 
 * file
   * description
