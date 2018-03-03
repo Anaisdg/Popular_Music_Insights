@@ -12,7 +12,7 @@ Popular Music Insights
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
-**Stephen your image goes here**
+![Map](readmeimg/map.png)
 
 II. Emotional influences and lyrical content mapped by analysis of 70 years of top-charting Billboard songs by genre. 
 * Example of the carousel that displays the word clouds for top hits 
@@ -20,29 +20,20 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * Example of the emotional attributes of hit songs over the last 70 years: 
 ![bubble_plot](readmeimg/bubble.png)
 
+**Technology used:**
 
-**Requirements:**
-
-* pandas == 0.20.3
-* numpy == 1.13.1
-* python
-
-**APIs used:**
-
-* Spotify 
-* Watson Personality Insights
-* **John your API goes here**
+* Spotify API
+* Watson Personality Insights API
+* Beautiful Soup
+* Lyrics Wiki 
+* wordcloud Library
+* Pandas
+* Numpy
+* Pandas
+* HTML, CSS, JS
+* MongoDB
 
 # File descriptions
-
-#### spotify_data
-
-**Stephen your data description goes here**
-
-* file
-  * description
-
-
 
 #### emotion_analysis
 
@@ -93,3 +84,24 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
   	* Watson Personality Insights API call and analysis. Converts billboard_rnb.csv into rnb_lyr_results.
   * rnb_lyr_results
   	* Output from Watson API
+   
+#### frontend
+* Left over branch for front end developement
+
+### proposal_img
+* Inspirational images for the project
+
+### readmeimg 
+* Images used for this readme
+
+#### spotify_data
+* Artist, genre, song, gender, race, and city demographic data for the interactive map. 
+
+#### vis_integration
+* Integration of all parts for final presesntation and app.py for flask deployment 
+
+#### visualizations
+* Test folder for frontend changes
+
+
+
