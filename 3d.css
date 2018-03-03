@@ -48,10 +48,10 @@
   
   .slide img {
     width: 380px;
-    box-shadow: 0 0 15px 3px rgba(110, 72, 221, 0.9);
-    border: 30px solid black;
-    border-radius: 50%;
-    background-color: black;
+   /* box-shadow: 0 0 15px 3px rgba(110, 72, 221, 0.9);*/
+   /* border: 30px solid bla;*/
+    /*border-radius: 50%;*/
+    background-color: white;
     height: 380px;
     
   }
