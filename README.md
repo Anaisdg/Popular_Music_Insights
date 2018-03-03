@@ -2,12 +2,13 @@
 
 ![Concert](readmeimg/concert.png)
 
-Analysis and visualization of music - by artists, songs, genres, lyrics, demographics, race and gender.
+## Analysis and visualization of music - by artists, songs, genres, lyrics, demographics, race and gender.
 
 **Project Title:** 
 Popular Music Insights
 
 **Project Outline:**
+
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
 ![Map](readmeimg/map.png)
@@ -29,10 +30,9 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * HTML, CSS, JS
 * MongoDB
 
-# File descriptions
+# File Descriptions
 
 #### emotion_analysis
-
 * country
   * billboard_country.csv
   	* top country hits and lyrics
@@ -80,22 +80,25 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
   	* Watson Personality Insights API call and analysis. Converts billboard_rnb.csv into rnb_lyr_results.
   * rnb_lyr_results
   	* Output from Watson API
-   
-#### frontend
-* Left over branch for front end developement
 
-### proposal_img
-* Inspirational images for the project
-
-### readmeimg 
-* Images used for this readme
-
-#### spotify_data
-* Artist, genre, song, gender, race, and city demographic data for the interactive map. 
+### Integration folders
 
 #### vis_integration
 * Integration of all parts for final presesntation and app.py for flask deployment 
+#### spotify_data
+* Artist, genre, song, gender, race, and city demographic data for the interactive map. 
 
+### Additional Information
+
+#### proposal_img
+* Inspirational images for the project
+#### readmeimg 
+* Images used for this readme
+
+### Development folders
+
+#### frontend
+* Leftover branch for front end development
 #### visualizations
 * Test folder for frontend changes
 
