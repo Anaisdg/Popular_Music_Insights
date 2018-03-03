@@ -16,7 +16,7 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * Example of the emotional attributes of hit songs over the last 70 years: 
 ![bubble_plot](readmeimg/bubble.png)
 
-**Technology used:**
+### Technology used
 
 * [Spotipy API for Spotify](spotipy.readthedocs.io/en/latest/#api-reference)
 * [Flask](http://flask.pocoo.org/docs/0.12/quickstart/) and [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
@@ -32,6 +32,10 @@ II. Emotional influences and lyrical content mapped by analysis of 70 years of t
 * MongoDB
 
 # File Descriptions
+
+**[wordcloud_data](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/wordcloud_data)**
+
+Data retrieval and analysis of lyrics from [lyrics.wikia.com](http://lyrics.wikia.com) scraped HTML; generation of word cloud images from WordCloud (using matplotlib/Python).
 
 **[emotion_analysis](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/emotion_analysis)**
 
@@ -64,10 +68,6 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
   * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts ```billboard_rnb.csv``` into ```rnb_lyr_results```.
   * ```rnb_lyr_results``` Output from Watson API
 
-```wordcloud_data```
-
-Data retrieval and analysis of lyrics from [lyrics.wikia.com](http://lyrics.wikia.com) scraped HTML; generation of word cloud images from WordCloud (using matplotlib/Python).
-
 ### Integration folders
 
 **[vis_integration](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/vis_integration)**
@@ -79,7 +79,7 @@ Data retrieval and analysis of lyrics from [lyrics.wikia.com](http://lyrics.wiki
 ### Additional Information
 
 #### Inspiration for map visualization
-[Spotify Insights Blog](https://insights.spotify.com/us/2016/12/07/musical-map-of-the-world-2-0/)
+* [Spotify Insights Blog](https://insights.spotify.com/us/2016/12/07/musical-map-of-the-world-2-0/)
 
 **[proposal_img](https://github.com/Anaisdg/Popular_Music_Insights/tree/master/proposal_img)**
 * Inspirational images for the project
