@@ -4,7 +4,9 @@
 
 ## Analysis and visualization of musical tastes by artists, songs, genres, lyrics, demographics, race, and gender
 
-**Outline:**
+**View the [Deployed app on Heroku](https://mighty-taiga-44531.herokuapp.com/static/Index.html).**
+
+**Outline**
 
 I. A geographical examination of the musical preferences across 15 cities -- filtered by artist genre, race, and gender -- based on Spotify streaming frequency. 
 * Example of the interactive map that examines the musical preferences for particular cities
