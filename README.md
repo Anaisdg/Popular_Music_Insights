@@ -65,6 +65,10 @@ Data retrieval and analysis of lyrics data supporting the Plotly bubble charts i
   * ```country_to_watson.ipynb``` Watson Personality Insights API call and analysis. Converts ```billboard_rnb.csv``` into ```rnb_lyr_results```.
   * ```rnb_lyr_results``` Output from Watson API
 
+```wordcloud_data```
+
+Data retrieval and analysis of lyrics from lyrics.wikia.com scraped HTML; generation of wordcloud images from WordCloud matplotlib Python layer.
+
 ### Integration folders
 
 ```vis_integration```
