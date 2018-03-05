@@ -1,13 +1,22 @@
-// Define endpoints. (Use querystring syntax "?limit=[count]", when limiting dataset)
-var citiesUrl = "http://localhost:5000/getCitiesFromMongo"; 
+// Define endpoint. (Use querystring syntax "?limit=[count]", when limiting dataset)
+//  Note: If hosted on Heroku, format differently
+var host = window.location.hostname;
+var endpoint = "getCitiesFromMongo";
+if (host.includes("heroku")) {
+    var base_url = "https://" + host + "/";
 
-// Define layer arrays for each dataset
-var genre_layer_name = "Genre";
-var layer2_name = "Gender";
-var layer3_name = "Race";
+} else {
+    var base_url = "http://localhost:5000/"; 
+}
+var citiesUrl = base_url + endpoint;
+
+// Constants for layer bubble colors
+var hex_color_race = "#43e16d";
+var hex_color_gender = "#ffa9a9";
+var hex_color_genre = "#b2ebff";
 
 /**
- * Perform GET requests to USGS.gov query URLs using d3.json
+ * Perform GET request against endpoint using d3.json
  * @param {string} queryURL - URL 
  */
 d3.json(citiesUrl, function(data) {
@@ -32,19 +41,24 @@ function createMaps(features) {
      */
     function bindFeature(feature, layer) {
         // Put list of top 5 artists into a string list
-        var top5 = feature.top_5_artists.join(', ');
-        layer.bindPopup("<h3>" + feature.city + "</h3><hr>" + 
-            "<table class='popup'><tr><td><b>Top Track:</b></td><td class='data'>" + feature.top_track.name + " (" + feature.top_track.artist + ")</td></tr>" +
-            "<tr><td><b>Top Artists:</b></td><td>" + top5 + "</td></tr></table>" +
-            "<b>Demographics:</b><blockquote>" +
-            "<b>African-American:</b> " + feature.perc_black + "% <br />" + 
-            "<b>Latino: </b>" + feature.perc_latino + "% <br />" + 
-            "<b>Asian: </b>" + feature.perc_asian + "%" + 
-            "</blockquote>")
+        var top5 = feature.top_5_artists.join('<br />');
+        var popup_content = "<h2>" + feature.city + "</h2><hr>" + 
+            "<table class='popup'>" + 
+            "<tr><td class='demographics'><b>City Demographics:</b></td><td class='demographics'>" +
+                "<b>African-American:</b> " + feature.perc_black + "% <br />" + 
+                "<b>Latino: </b>" + feature.perc_latino + "% <br />" + 
+                "<b>Asian: </b>" + feature.perc_asian + "%" + 
+            "</td></tr>" +            
+            "<tr><td><b>Top Track:</b></td><td class='data'>" + feature.top_track.name + " (" + feature.top_track.artist + ")</td></tr>" +
+            "<tr><td><b>Top Artists:</b></td><td>" + top5 + "</td></tr>" +
+            "</table>";
+
+        // Bind the popup with above content
+        layer.bindPopup(popup_content);
     }
 
-    // Create a GeoJSON layer containing the features array on the object, running 
-    //  the onEachFeature() function once for each item in the array. Then, add to map.
+    // Create a GeoJSON layer containing the features array on the
+    // object, running the onEachFeature() function once for each item in the array. Then, add to map.
     L_cities = L.geoJSON(features, {
         onEachFeature: bindFeature
     })
@@ -79,11 +93,18 @@ function createMaps(features) {
     raceOverlays = createLayers(race_arrays, "race");
 
     //
+    // Gender layer creation - Get list of all genders and loop through them to generate layer items
+    //
+    var gender_arrays = getCategories("gender", features);
+    genderOverlays = createLayers(gender_arrays, "gender");
+
+    //
     // Layer grouping logic 
     //
     // Master layer object
     var overlays = {
         "Races": raceOverlays,
+        "Genders": genderOverlays,
         "Genres": genreOverlays
     }
     // Define overlay options 
@@ -98,7 +119,32 @@ function createMaps(features) {
 
     // Use d3.selections to add a label to the grouping checkbox
     d3.selectAll(".leaflet-control-layers-group-label").insert("span", ":nth-child(2)").html("<i>Select all</i>");
-    
+
+    var idx = 0;
+    d3.selectAll(".leaflet-control-layers-group-name").each(function(d) {
+        // Insert the wrapper container
+        var $container = document.createElement("span");
+        this.parentNode.insertBefore($container, this);    
+        $container.setAttribute("class", "key_container"); 
+
+        //var $groupContainer = d3.select(this).insert("span", ".leaflet-control-layers-group-name").classed("key_container", true);
+        var $groupContainer = d3.select("#leaflet-control-layers-group-" + idx + " .leaflet-control-layers-group-label .key_container");
+        // Insert the label
+        $groupContainer.insert("span").classed("label", true).html("Key:");
+
+        // Insert the color swatch container
+        var text = this.innerHTML.split("<")[0];
+        hex = text == "Races" ? hex_color_race :
+                        text == "Genders" ? hex_color_gender :
+                        text == "Genres" ? hex_color_genre : "black";
+
+        $groupContainer.insert("span").classed("key", true)
+            .style("background-color", hex)
+            .html("&nbsp;");
+
+        idx++;
+    });
+
     /** Map layer overlay "add" event */
     myMap.on('overlayadd', function(overlay) {
         updateOverlayCounts(overlay, "add");
@@ -168,6 +214,7 @@ function createMaps(features) {
                 ) {
                 // City- and Layer type-specific class (e.g., "Genres_SanAntonio")
                 var city_class = layer_type + "_" + city_previous.replace(/\s/g, "");
+                city_class = city_class.replace(/,/g, ''); // strip out commas, if they exist
 
                 // Get number of layers for the previous city (or current city if only 1)
                 var num_layers = i_city;
@@ -203,10 +250,10 @@ function createMaps(features) {
                 if (num_layers > 0) {
                     $svg_g.append("text")
                         .classed(city_class, true)
-                        .attr("x", x_prev - 6)
+                        .attr("x", x_prev - 25)
                         .attr("y", y_prev + 18)
-                        .style("font-size", "1.6em")
-                        .text(num_layers);
+                        .style("font-size", "1.1em")
+                        .text(num_layers + " bands");
                 }
 
                 // Reset city count
@@ -233,9 +280,6 @@ function createMaps(features) {
  * @returns {number} - Number of layers
  */
 function updateCityLayerCounts ($svg_g, action, num_layers, city_class) {
-    // Get the SVG Group as a d3 object
-    var $svg_g = d3.select(".leaflet-overlay-pane svg g");
-
     // If there is already a <text> element for this city/layer type combo, increment its value
     var $cityTextLayers = $svg_g.selectAll("text." + city_class);
     var cur_layer_count = 0, highest_layer_count = 0;
@@ -299,6 +343,13 @@ function createLayers(category_arrays, type) {
                             style: styleOverlayLayerRace
                         });
                         break;
+                    case "gender":
+                        // Create and store new layer in overlays object
+                         catOverlays[cat_name] = new L.GeoJSON(null, {
+                             pointToLayer: bindOverlayLayer,
+                             style: styleOverlayLayerGender
+                         });
+                         break;                        
                     default:
                 }
             }
@@ -342,6 +393,7 @@ function getCategories(type, data) {
     // Initialize array variables
     var cat_arrays = [];
     var races = ["White", "African-American", "Latino"]; 
+    var genders = ["Male", "Female"]; 
 
     // Loop through all cities to create master category list
     for (var c = 0; c < data.length; c++) {
@@ -390,15 +442,22 @@ function getCategories(type, data) {
                         }                
                     }
                     
-                } else if (type == "race") {
-                    var categories = races;
-
-                    // Grab the static 'race' or 'gender' value
-                    var cur_race = data[c].top_artists[a].race;
+                } else if (type == "race" || type == "gender") {
+                    switch(type) {
+                        case "race":
+                            var categories = races;
+                            var cur_cat = data[c].top_artists[a].race;
+                            break;
+                        case "gender":
+                            var categories = genders;
+                            var cur_cat = data[c].top_artists[a].gender;
+                            break;
+                        default:
+                    }
 
                     // If we found a "cat_arrays" element for the current category, grab the 
                     //  'cities_array' out of it, and push current city data to it
-                    var cur_cat_array = cat_arrays.find(el => el.category==cur_race);
+                    var cur_cat_array = cat_arrays.find(el => el.category==cur_cat);
                     if (cur_cat_array) {
 
                         cur_cat_array.cities_array.push(cur_city_data);
@@ -408,7 +467,7 @@ function getCategories(type, data) {
                     } else {
                         cat_arrays.push(
                             { 
-                                "category": cur_race,
+                                "category": cur_cat,
                                 "cities_array": [cur_city_data]
                             }
                         );                                
@@ -434,7 +493,7 @@ function getCategories(type, data) {
  */
 function styleOverlayLayerGenre(feature) {
     return {
-        fillColor: "#ffa9a9",
+        fillColor: hex_color_genre,
         weight: 1,
         opacity: 1,
         fillOpacity: 0.7
@@ -447,12 +506,27 @@ function styleOverlayLayerGenre(feature) {
  */
 function styleOverlayLayerRace(feature) {
     return {
-        fillColor: "#43e16d",
+        fillColor: hex_color_race,
         weight: 1,
         opacity: 1,
         fillOpacity: 0.7
     };
 }
+/**
+ * A Function defining the Path options for styling 
+ * GeoJSON lines and polygons, called internally when data is added
+ * @param {*} feature 
+ */
+
+function styleOverlayLayerGender(feature) { 
+    return {
+        fillColor: hex_color_gender,
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.7
+    };
+}
+
 /**
  * Function that defines how GeoJSON points spawn Leaflet layers. Internally called 
  *  when data is added, passing the GeoJSON point feature and its LatLng.
@@ -461,7 +535,7 @@ function styleOverlayLayerRace(feature) {
  */
 function bindOverlayLayer(feature, latlng) {
     return L.circleMarker(latlng, {
-        radius: 30 
+        radius: 42
     });
 }
 

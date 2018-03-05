@@ -52,14 +52,37 @@ html {
 
 .leaflet-control-layers-group {
   margin-bottom: 1.2em;
+  border: 1px solid #aba7a7;
+  padding: .7em .5em .7em 0;
+  background-color: #d9effb;
+}
+
+.leaflet-control-layers-group-label span.key_container {
+    padding: 5px 0 5px 0; 
+    margin-left: 25px; 
+    border: 1px solid gainsboro; 
+    background-color: #ffffff;
+}
+
+.leaflet-control-layers-group-label span.key_container .label {
+    padding-left: 11px; 
+    font-weight: normal;
+}
+
+.leaflet-control-layers-group-label span.key_container .key {
+    margin-left: 3px; 
+    padding-left: 8px; 
+    margin-right: 8px;
+    border-radius: 9px;
 }
 
 .leaflet-control-layers-group label {
   padding-left: .5em;
+  clear:both;
 }
 
 .leaflet-control-layers {
-  max-height: 728px;
+  max-height: 797px;
   overflow: auto;
 }
 
@@ -88,4 +111,20 @@ table.popup td.demographics {
 
 table.popup td.data {
   width:15em;
+}
+
+.leaflet-bottom .leaflet-control {
+  padding-bottom: 0 !important;
+}
+
+.leaflet-control-layers-expanded {
+  padding-bottom: 0 !important;
+}
+
+.leaflet-control-layers-group span {
+  font-size: .9em;
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  background-color: skyblue;
 }
